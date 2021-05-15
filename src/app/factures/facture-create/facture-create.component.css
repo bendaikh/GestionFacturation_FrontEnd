@@ -1,0 +1,22 @@
+.first-card {
+  background-color: royalblue;
+  color: white;
+  padding: 10px;
+  height: 50px;
+}
+mat-grid-tile{
+  width: 100px;
+}
+table {
+  width: 95%;
+  margin-left: 2%;
+}
+
+th {
+  font-size: 15px;
+  color: white;
+  background-color: royalblue;
+}
+.example-margin {
+  margin: 0 10px;
+}

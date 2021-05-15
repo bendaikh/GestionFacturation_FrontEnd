@@ -1,0 +1,60 @@
+<mat-card class="first-card">
+  <mat-card-title  >FleetT&M: Créer un paiment</mat-card-title>
+</mat-card>
+<mat-card>
+  <h3 style="margin-left: 30px" >Informations de la créance</h3>
+  <mat-form-field appearance="fill" style="margin-left: 65px" >
+    <mat-label >Chercher par facture : </mat-label>
+    <input matInput type="text"  >
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
+    <mat-label >Chercher par client :</mat-label>
+    <input matInput type="text" >
+  </mat-form-field>
+  <div style="margin-left: 30px" >
+    <h3>Informations de facturation</h3>
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
+    <mat-label >Référence Facture :</mat-label>
+    <input matInput type="text"  >
+  </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 30px" >
+      <mat-label >Total à payer :</mat-label>
+      <input matInput type="text" >
+    </mat-form-field>
+  </div>
+  <div style="margin-left: 30px" >
+    <h3>Détails du paiement :</h3>
+    <mat-form-field appearance="fill" style="margin-left: 30px" >
+      <mat-label >Date du paiment </mat-label>
+      <input matInput type="date" [(ngModel)]="paiment.datePaiment" >
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 30px" >
+      <mat-label >Montant </mat-label>
+      <input matInput type="text" placeholder="000 000,00" [(ngModel)]="paiment.montant" >
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 30px">
+      <mat-label>Mode de paiment</mat-label>
+      <mat-select disableRipple >
+        <mat-option value="1" >Espéce</mat-option>
+        <mat-option value="2">Virement</mat-option>
+        <mat-option value="3">Chéque</mat-option>
+        <mat-option value="4">LCN</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div style="margin-left: 55px">
+    <mat-form-field appearance="fill">
+      <mat-label>Libellé</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+
+  <div style="margin-left: 30px" >
+  <h3>État du paiement :</h3><mat-label>Comptabilisée :</mat-label>
+    <mat-checkbox class="example-margin" ></mat-checkbox>
+    <mat-label>Enregistré :</mat-label>
+    <mat-checkbox class="example-margin" ></mat-checkbox>
+  </div>
+  <button mat-raised-button color="warn" style="margin: 40px">Quitter</button>
+  <button mat-raised-button style="margin: 40px; background-color: green; color: white">Enregistrer</button></mat-card>

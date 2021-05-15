@@ -1,0 +1,9 @@
+.first-card {
+  background-color: royalblue;
+  color: white;
+  padding: 10px;
+  height: 50px;
+}
+.example-margin {
+  margin: 0 10px;
+}

@@ -1,0 +1,47 @@
+<mat-card class="first-card">
+  <mat-card-title  >Paiments</mat-card-title>
+</mat-card>
+
+<button mat-raised-button color="primary" style="float: right; margin: 60px">Nouveau Paiment</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="reference">
+    <th mat-header-cell *matHeaderCellDef> Référence </th>
+    <td mat-cell *matCellDef="let element "> {{element.reference}} </td>
+  </ng-container>
+  <ng-container matColumnDef="dateCreation">
+    <th mat-header-cell *matHeaderCellDef> Date de création </th>
+    <td mat-cell *matCellDef="let element "> {{element.dateCreation}} </td>
+  </ng-container>
+  <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef>Client</th>
+    <td mat-cell *matCellDef="let element "> {{element.client}} </td>
+  </ng-container>
+  <ng-container matColumnDef="montant">
+    <th mat-header-cell *matHeaderCellDef> Montant</th>
+    <td mat-cell *matCellDef="let element "> {{element.montant}} </td>
+  </ng-container>
+  <ng-container matColumnDef="paimentStatut">
+    <th mat-header-cell *matHeaderCellDef> Statut paiment </th>
+    <td mat-cell *matCellDef="let element"> {{element.paimentStatut}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="facture">
+    <th mat-header-cell *matHeaderCellDef> Facture </th>
+    <td mat-cell *matCellDef="let element "> <a href="#">Consulter</a> </td>
+  </ng-container>
+  <ng-container matColumnDef="factureStatut">
+    <th mat-header-cell *matHeaderCellDef> FactureStatut </th>
+    <td mat-cell *matCellDef="let element"> {{element.factureStatut}} </td>
+  </ng-container>
+  <ng-container matColumnDef="reste">
+    <th mat-header-cell *matHeaderCellDef> Reste </th>
+    <td mat-cell *matCellDef="let element"> {{element.reste}} </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element "> {{element.action}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+</table>
