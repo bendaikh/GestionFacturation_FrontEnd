@@ -1,0 +1,61 @@
+<mat-card class="first-card">
+  <mat-card-title  >Paiments</mat-card-title>
+</mat-card>
+
+<a mat-button mat-raised-button color="primary" style="float: right; margin: 60px" href="paiment-create">Nouveau Paiment</a>
+<mat-form-field  style=" width: 95%; margin-left: 2%;">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pai" #input>
+</mat-form-field>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort >
+  <ng-container matColumnDef="reference">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Référence </th>
+    <td mat-cell *matCellDef="let element "> {{element.reference}} </td>
+  </ng-container>
+  <ng-container matColumnDef="dateCreation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de création </th>
+    <td mat-cell *matCellDef="let element "> {{element.dateCreation}} </td>
+  </ng-container>
+  <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
+    <td mat-cell *matCellDef="let element "> {{element.client}} </td>
+  </ng-container>
+  <ng-container matColumnDef="montant" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant</th>
+    <td mat-cell *matCellDef="let element "> {{element.montant}} </td>
+  </ng-container>
+  <ng-container matColumnDef="paimentStatut">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut paiment </th>
+    <td mat-cell *matCellDef="let element"> {{element.paimentStatut}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="facture">
+    <th mat-header-cell *matHeaderCellDef> Facture </th>
+    <td mat-cell *matCellDef="let element "> <a href="#">Consulter</a> </td>
+  </ng-container>
+  <ng-container matColumnDef="factureStatut">
+    <th mat-header-cell *matHeaderCellDef> FactureStatut </th>
+    <td mat-cell *matCellDef="let element"> {{element.factureStatut}} </td>
+  </ng-container>
+  <ng-container matColumnDef="reste" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Reste </th>
+    <td mat-cell *matCellDef="let element"> {{element.reste}} </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element; index as i "> <button mat-icon-button color="warn" aria-label="iconButton"(click)="deleteByReference(i, element)">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+    </button>
+      <button mat-icon-button style="color: green" aria-label="iconButton" >
+        <mat-icon aria-hidden="false" aria-label="Example home icon">update</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="iconButton">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
+      </button> </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+</table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>

@@ -5,7 +5,7 @@ export class Facture {
   public id: number;
   public reference: string;
   public dateCreation: Date;
-  public dateEcheance: Date;
+  public dateEchaence: Date;
   public prix: number;
   public quantite: number;
   public totalht: number;
@@ -21,9 +21,6 @@ export class Facture {
   public cdtpaiment: number;
   public notes: string;
   public commentaire: string;
-  public transmise: boolean;
-  // tslint:disable-next-line:variable-name
-  public en_litige: boolean;
   public factureEtat: FactureEtat;
   public factureStatut: FactureStatut;
 }

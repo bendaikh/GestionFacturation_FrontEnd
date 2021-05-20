@@ -14,24 +14,18 @@
   </mat-form-field>
   <mat-form-field appearance="fill" style="margin-left: 30px" >
     <mat-label >Date d'échéance</mat-label>
-    <input matInput type="date" [(ngModel)]="facture.dateEcheance" >
+    <input matInput type="date" [(ngModel)]="facture.dateEchaence" >
   </mat-form-field>
-  <mat-form-field appearance="fill" style="margin-left: 30px">
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
     <mat-label>État</mat-label>
-    <mat-select disableRipple >
-      <mat-option value="1" >À éditer</mat-option>
-      <mat-option value="2">Éditée</mat-option>
-      <mat-option value="3">Envoyée</mat-option>
-      <mat-option value="4">Comptabilisée</mat-option>
+    <mat-select disableRipple  [(ngModel)]="factureEtat.id"  >
+      <mat-option *ngFor="let f of factureEtats" [value]="f.id"    >{{f.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" style="margin-left: 30px">
     <mat-label>Statut</mat-label>
-    <mat-select disableRipple >
-      <mat-option value="1" >Non payée</mat-option>
-      <mat-option value="2">Partiellement payée</mat-option>
-      <mat-option value="3">Payée</mat-option>
-      <mat-option value="4">En litige</mat-option>
+    <mat-select disableRipple [(ngModel)]="factureStatut.id"  >
+      <mat-option  *ngFor="let f of factureStatuts" [value]="f.id"   >{{f.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
 </mat-card>
@@ -125,7 +119,7 @@
   <mat-grid-tile style="margin-left: -120px">
   <button mat-raised-button color="warn" style="margin: 40px">Quitter</button>
   <button mat-raised-button color="primary" style="margin: 40px; background-color: blueviolet; color: white">Éditer</button>
-  <button mat-raised-button style="margin: 40px; background-color: green; color: white">Enregistrer</button>
+  <button mat-raised-button style="margin: 40px; background-color: green; color: white" (click)="save()">Enregistrer</button>
 
   </mat-grid-tile>
 
@@ -146,18 +140,23 @@
   </form>
 </mat-card>
 <button mat-raised-button color="primary" style="float: right; " (click)="openDialog()">Ajouter un paiment</button>
-<div style="margin-top: 50px;">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-form-field style=" width: 95%; margin-left: 2%;" class="hahah">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Fac" #input>
+</mat-form-field>
+
+<div   class="mat-elevation-z8" >
+  <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="datePaiment">
-      <th mat-header-cell *matHeaderCellDef> Date de paiment </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de paiment </th>
       <td mat-cell *matCellDef="let element "> {{element.datePaiment}} </td>
     </ng-container>
     <ng-container matColumnDef="paimentMethode">
       <th mat-header-cell *matHeaderCellDef>Modalité de paiment</th>
-      <td mat-cell *matCellDef="let element "> {{element.paimentMethode}} </td>
+      <td mat-cell *matCellDef="let element "> {{element.paimentMethode.nom}} </td>
     </ng-container>
     <ng-container matColumnDef="montant">
-      <th mat-header-cell *matHeaderCellDef> Montant</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant</th>
       <td mat-cell *matCellDef="let element "> {{element.montant}} </td>
     </ng-container>
     <ng-container matColumnDef="commentaire">
@@ -165,7 +164,7 @@
       <td mat-cell *matCellDef="let element"> {{element.commentaire}} </td>
     </ng-container>
     <ng-container matColumnDef="reference">
-      <th mat-header-cell *matHeaderCellDef> Référence </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Référence </th>
       <td mat-cell *matCellDef="let element "> {{element.reference}} </td>
     </ng-container>
     <ng-container matColumnDef="comptabilise">
@@ -176,11 +175,20 @@
     </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let element "> {{element.action}} </td>
+      <td mat-cell *matCellDef="let element ">  <button mat-icon-button color="warn" aria-label="iconButton">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+        <button mat-icon-button style="color: green" aria-label="iconButton" >
+          <mat-icon aria-hidden="false" aria-label="Example home icon">update</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" aria-label="iconButton">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
+        </button></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
   </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
 <div style="margin-left: 20px">
 <h3>Facture :</h3>

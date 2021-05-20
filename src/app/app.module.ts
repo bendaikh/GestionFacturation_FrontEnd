@@ -1,38 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule, components} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import { FacturesComponent } from './factures/factures.component';
-import { FactureCreateComponent } from './factures/facture-create/facture-create.component';
-import { FactureListComponent } from './factures/facture-list/facture-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
-import { PaimentsComponent } from './paiments/paiments.component';
-import { PaimentCreateComponent } from './paiments/paiment-create/paiment-create.component';
-import { PaimentListComponent } from './paiments/paiment-list/paiment-list.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
-import { PaimentDailogComponent } from './paiments/paiment-dailog/paiment-dailog.component';
+// import { PaimentDailogComponent } from './paiments/paiment-dailog/paiment-dailog.component';
+import { MenuComponent } from './view/menu/menu.component';
+import { PageNoteFoundedComponent } from './view/page-note-founded/page-note-founded.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {FacturesComponent} from './view/factures/factures.component';
+import {FactureCreateComponent} from './view/factures/facture-create/facture-create.component';
+import {FactureListComponent} from './view/factures/facture-list/facture-list.component';
+import {PaimentsComponent} from './view/paiments/paiments.component';
+import {PaimentCreateComponent} from './view/paiments/paiment-create/paiment-create.component';
+import {PaimentListComponent} from './view/paiments/paiment-list/paiment-list.component';
+import {PaimentDailogComponent} from './view/paiments/paiment-dailog/paiment-dailog.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import { DeleteDailogComponent } from './view/factures/delete-dailog/delete-dailog.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FacturesComponent,
-    FactureCreateComponent,
-    FactureListComponent,
-    PaimentsComponent,
-    PaimentCreateComponent,
-    PaimentListComponent,
-    PaimentDailogComponent
+   components,
+    PaimentDailogComponent,
+    MenuComponent,
+    PageNoteFoundedComponent,
+    DeleteDailogComponent
   ],
-  entryComponents: [PaimentDailogComponent],
+  entryComponents: [PaimentDailogComponent, DeleteDailogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,9 +54,14 @@ import { PaimentDailogComponent } from './paiments/paiment-dailog/paiment-dailog
     MatButtonModule,
     MatTableModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatToolbarModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatSortModule,
+    MatPaginatorModule
 ],
   providers: [],
-  bootstrap: [FacturesComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

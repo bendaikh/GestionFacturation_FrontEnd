@@ -1,0 +1,23 @@
+.first-card {
+  background-color: royalblue;
+  color: white;
+  padding: 10px;
+  height: 50px;
+}
+table {
+  width: 95%;
+  margin-left: 2%;
+}
+
+th {
+  font-size: 15px;
+  color: white;
+  background-color: royalblue;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

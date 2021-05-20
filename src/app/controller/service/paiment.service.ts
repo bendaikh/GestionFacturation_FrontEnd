@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Paiment} from '../model/paiment.model';
 import {HttpClient} from '@angular/common/http';
+import {PaimentMethode} from '../model/paiment-methode.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class PaimentService {
   private _paiments: Array<Paiment>;
   // tslint:disable-next-line:variable-name
   private _index: number;
+  // tslint:disable-next-line:variable-name
+  private _paimentMethode: PaimentMethode;
+  // tslint:disable-next-line:variable-name
+  private _paimentMethodes: Array<PaimentMethode>;
 
   public deleteByReference(index: number, paiment: Paiment) {
     const link = this._urlBase + this._url + '/reference/' + paiment.reference;
@@ -55,15 +60,38 @@ export class PaimentService {
   }
 
   public findAll() {
-    this.http.get<Array<Paiment>>(this._urlBase + this._url + '/').subscribe(
-      data => {
-        this.paiments = data;
-        console.log(data);
-      }, error => {
-        console.log(error);
-      }
-    );
+   return this.http.get(this._urlBase + this._url + '/') ;
   }
+  public findAllPaimentMethode() {
+     this.http.get<Array<PaimentMethode>>(this._urlBase + '/getionfacturation/paiment_methode/').subscribe(
+       data => {
+         this.paimentMethodes = data;
+       }
+     );
+  }
+
+  get paimentMethode(): PaimentMethode {
+    if (this._paimentMethode == null) {
+      this._paimentMethode  = new PaimentMethode();
+    }
+    return this._paimentMethode;
+  }
+
+  set paimentMethode(value: PaimentMethode) {
+    this._paimentMethode = value;
+  }
+
+  get paimentMethodes(): Array<PaimentMethode> {
+    if (this._paimentMethodes == null) {
+      this._paimentMethodes = new Array<PaimentMethode>();
+    }
+    return this._paimentMethodes;
+  }
+
+  set paimentMethodes(value: Array<PaimentMethode>) {
+    this._paimentMethodes = value;
+  }
+
   get paiment(): Paiment {
     if (this._paiment == null) {
       this._paiment = new Paiment();

@@ -6,11 +6,9 @@
 <div>
 <mat-form-field appearance="fill">
   <mat-label>Mode de paiment</mat-label>
-  <mat-select>
-    <mat-option>Espéce</mat-option>
-    <mat-option>Virement</mat-option>
-    <mat-option>Chéque</mat-option>
-    <mat-option>LCN</mat-option>
+  <mat-select disableRipple  [(ngModel)]="paimentMethode.id">
+    <mat-option *ngFor="let p of paimentMethodes" [value]="p.id"  >
+      {{p.nom}}</mat-option>
   </mat-select>
 </mat-form-field></div>
 <div>
@@ -27,5 +25,5 @@
 </div>
 <mat-dialog-actions>
 <button mat-raised-button color="warn" mat-dialog-close>Quitter</button>
-<button mat-raised-button style="margin-left: 10px; background-color: green; color: white">Valider</button>
+<button mat-raised-button style="margin-left: 10px; background-color: green; color: white" (click)="save()">Valider</button>
 </mat-dialog-actions>
