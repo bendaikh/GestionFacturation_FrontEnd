@@ -40,7 +40,7 @@ export class FactureService {
   }
 
   get factureStatut(): FactureStatut {
-    if (this._factureStatuts == null ) {
+    if (this._factureStatut == null ) {
       this._factureStatut = new FactureStatut();
     }
     return this._factureStatut;
@@ -90,6 +90,11 @@ export class FactureService {
   }
   public save() {
     if (this.facture.id == null) {
+      console.log(this.facture.factureEtat);
+      console.log(this.facture.factureStatut);
+      console.log(this.facture);
+    //  this.facture.factureEtat.id = this.factureEtat.id;
+    //  this.facture.factureStatut.id = this.factureStatut.id;
       this.http.post<Array<Facture>>(this._urlBase + this._url + '/', this.facture).subscribe(
         data => {
           // @ts-ignore
@@ -167,6 +172,8 @@ export class FactureService {
     myClone.totalHtnet = facture.totalHtnet;
     myClone.cdtpaiment = facture.cdtpaiment;
     myClone.notes = facture.notes;
+    myClone.factureEtat = facture.factureEtat;
+    myClone.factureStatut = facture.factureStatut;
     myClone.commentaire = facture.commentaire;
     return myClone;
   }

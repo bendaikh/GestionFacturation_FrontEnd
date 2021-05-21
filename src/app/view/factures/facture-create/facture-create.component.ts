@@ -26,6 +26,18 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   get paiment(): Paiment {
     return this.paimentService.paiment;
   }
+  get factureEtats(): Array<FactureEtat> {
+    return this.factureService.factureEtats;
+  }
+  get factureStatuts(): Array<FactureStatut> {
+    return this.factureService.factureStatuts;
+  }
+  get factureEtat(): FactureEtat {
+    return this.factureService.factureEtat;
+  }
+  get factureStatut(): FactureStatut {
+    return this.factureService.factureStatut;
+  }
   // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Paiment[];
   displayedColumns: string[] = ['datePaiment', 'paimentMethode' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
@@ -34,6 +46,7 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
+    display = false;
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
@@ -52,21 +65,12 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
 //  selecteds: FactureStatut;
   // tslint:disable-next-line:adjacent-overload-signatures
   public save() {
+  //  this.facture.factureEtat.id = 0;
+   // this.facture.factureEtat.id = this.factureEtat.id;
+   // this.facture.factureStatut.id = this.factureStatut.id;
    // this.facture.factureEtat = this.selected;
   //  this.facture.factureStatut = this.selecteds;
     this.factureService.save();
-  }
-  get factureEtats(): Array<FactureEtat> {
-    return this.factureService.factureEtats;
-  }
-  get factureStatuts(): Array<FactureStatut> {
-    return this.factureService.factureStatuts;
-  }
-  get factureEtat(): FactureEtat {
-    return this.factureService.factureEtat;
-  }
-  get factureStatut(): FactureStatut {
-    return this.factureService.factureStatut;
   }
     ngOnInit() {
       this.factureService.findAllFactureEtat();
