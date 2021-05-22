@@ -3,6 +3,9 @@ import {Facture} from '../model/facture.model';
 import {HttpClient} from '@angular/common/http';
 import {FactureEtat} from '../model/facture-etat.model';
 import {FactureStatut} from '../model/facture-statut.model';
+import {Commande} from '../model/commande.model';
+import {Devis} from '../model/devis.model';
+import {Currency} from '../model/currency.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +29,84 @@ export class FactureService {
   private _factureEtat: FactureEtat;
   // tslint:disable-next-line:variable-name
   private _factureStatut: FactureStatut;
+  // tslint:disable-next-line:variable-name
+  private _commande: Commande;
+  // tslint:disable-next-line:variable-name
+  private _commandes: Array<Commande>;
+  // tslint:disable-next-line:variable-name
+  private _devis: Devis;
+  // tslint:disable-next-line:variable-name
+  private _listeDevis: Array<Devis>;
+  // tslint:disable-next-line:variable-name
+  private _currency: Currency;
+  // tslint:disable-next-line:variable-name
+  private _currencys: Array<Currency>;
+
+  get commande(): Commande {
+    if (this._commande == null) {
+      this._commande = new Commande();
+    }
+    return this._commande;
+  }
+
+  set commande(value: Commande) {
+    this._commande = value;
+  }
+
+  get commandes(): Array<Commande> {
+    if (this._commandes == null) {
+      this._commandes = new Array<Commande>();
+    }
+    return this._commandes;
+  }
+
+  set commandes(value: Array<Commande>) {
+    this._commandes = value;
+  }
+
+  get devis(): Devis {
+    if (this._devis == null) {
+      this._devis = new Devis();
+    }
+    return this._devis;
+  }
+
+  set devis(value: Devis) {
+    this._devis = value;
+  }
+
+  get listeDevis(): Array<Devis> {
+    if (this._listeDevis == null) {
+      this._listeDevis = new Array<Devis>();
+    }
+    return this._listeDevis;
+  }
+
+  set listeDevis(value: Array<Devis>) {
+    this._listeDevis = value;
+  }
+
+  get currency(): Currency {
+    if (this._currency == null) {
+      this._currency = new Currency();
+    }
+    return this._currency;
+  }
+
+  set currency(value: Currency) {
+    this._currency = value;
+  }
+
+  get currencys(): Array<Currency> {
+    if (this._currencys == null) {
+      this._currencys = new Array<Currency>();
+    }
+    return this._currencys;
+  }
+
+  set currencys(value: Array<Currency>) {
+    this._currencys = value;
+  }
 
   get factureEtat(): FactureEtat {
     if (this._factureEtat == null) {
