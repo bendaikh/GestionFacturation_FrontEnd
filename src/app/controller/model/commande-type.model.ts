@@ -1,5 +1,5 @@
 export class CommandeType {
-  private id: number;
-  private code: string;
-  private nom: string;
+  public id: number;
+  public code: string;
+  public nom: string;
 }

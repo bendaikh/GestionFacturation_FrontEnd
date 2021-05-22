@@ -6,17 +6,17 @@ import {Expedition} from './expedition.model';
 import {Delivery} from './delivery.model';
 
 export class Commande {
-  private id: number;
-  private reference: string;
+  public id: number;
+  public reference: string;
   // tslint:disable-next-line:variable-name
-  private date_Commande: Date;
-  private montant: number;
-  private commentaire: string;
-  private commandestatut: CommandeStatut;
-  private commandeType: CommandeType;
-  private expedition: Expedition;
-  private client: Client;
-  private currency: Currency;
+  public date_Commande: Date;
+  public montant: number;
+  public commentaire: string;
+  public commandestatut: CommandeStatut;
+  public commandeType: CommandeType;
+  public expedition: Expedition;
+  public client: Client;
+  public currency: Currency;
   // tslint:disable-next-line:align
-  private deliveries = new Array <Delivery>();
+  public deliveries = new Array <Delivery>();
 }

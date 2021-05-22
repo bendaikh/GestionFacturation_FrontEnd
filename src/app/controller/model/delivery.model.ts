@@ -1,23 +1,23 @@
 import {Commande} from './commande.model';
 
 export class Delivery {
-  private id: number;
-  private reference: string;
+  public id: number;
+  public reference: string;
   // tslint:disable-next-line:variable-name
-  private creation_date: Date;
+  public creation_date: Date;
   // tslint:disable-next-line:variable-name
-  private delivery_date: Date;
+  public delivery_date: Date;
   // tslint:disable-next-line:variable-name
-  private cmr_Number: number;
+  public cmr_Number: number;
   // tslint:disable-next-line:variable-name
-  private cmr_Commodity: string;
+  public cmr_Commodity: string;
   // tslint:disable-next-line:variable-name
-  private cmr_Shipper: string;
+  public cmr_Shipper: string;
   // tslint:disable-next-line:variable-name
-  private cmr_Shipping_Adress: string;
+  public cmr_Shipping_Adress: string;
   // tslint:disable-next-line:variable-name
-  private cmr_Recipient: string;
+  public cmr_Recipient: string;
   // tslint:disable-next-line:variable-name
-  private cmr_Recipient_Address: string;
-  private commande: Commande;
+  public cmr_Recipient_Address: string;
+  public commande: Commande;
 }

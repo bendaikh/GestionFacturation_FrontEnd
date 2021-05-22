@@ -1,5 +1,8 @@
 import {FactureEtat} from './facture-etat.model';
 import {FactureStatut} from './facture-statut.model';
+import {Commande} from './commande.model';
+import {Currency} from './currency.model';
+import {Devis} from './devis.model';
 
 export class Facture {
   public id: number;
@@ -23,4 +26,7 @@ export class Facture {
   public commentaire: string;
   public factureEtat: FactureEtat;
   public factureStatut: FactureStatut;
+  public commande: Commande;
+  public currency: Currency;
+  public devis: Devis;
 }

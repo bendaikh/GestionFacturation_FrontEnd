@@ -4,17 +4,17 @@ import {Currency} from './currency.model';
 import {QuotationStatus} from './quotation-status.model';
 
 export class Devis {
-  private id: number;
-  private reference: string;
+  public id: number;
+  public reference: string;
   // tslint:disable-next-line:variable-name
-  private date_devis: Date;
-  private commercial: string;
+  public date_devis: Date;
+  public commercial: string;
   // tslint:disable-next-line:variable-name
-  private date_echange: Date;
-  private depart: string;
-  private arrive: string;
-  private prix: number;
-  private quantity: number;
+  public date_echange: Date;
+  public depart: string;
+  public arrive: string;
+  public prix: number;
+  public quantity: number;
   // tslint:disable-next-line:variable-name
   public remise_val: number;
   // tslint:disable-next-line:variable-name
@@ -23,16 +23,16 @@ export class Devis {
   public tva_valeur: number;
   // tslint:disable-next-line:variable-name
   public tva_pourcentage: number;
-  private montant: number;
-  private totalPayer: number;
+  public montant: number;
+  public totalPayer: number;
   public note: string;
   public commentaire: string;
   // tslint:disable-next-line:variable-name
-  private date_creation: Date;
-  private type: CommandeType;
-  private expedition: Expedition;
-  private currency: Currency;
+  public date_creation: Date;
+  public type: CommandeType;
+  public expedition: Expedition;
+  public currency: Currency;
   // tslint:disable-next-line:variable-name
-  private quotation_status: QuotationStatus;
+  public quotation_status: QuotationStatus;
 
 }
