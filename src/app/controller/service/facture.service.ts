@@ -6,6 +6,9 @@ import {FactureStatut} from '../model/facture-statut.model';
 import {Commande} from '../model/commande.model';
 import {Devis} from '../model/devis.model';
 import {Currency} from '../model/currency.model';
+import {Client} from '../model/client.model';
+import {DeviseSuccessComponent} from '../../view/devise/devise-success/devise-success.component';
+import {MatDialog} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +44,10 @@ export class FactureService {
   private _currency: Currency;
   // tslint:disable-next-line:variable-name
   private _currencys: Array<Currency>;
-
+  // tslint:disable-next-line:variable-name
+ private _client: Client;
+  // tslint:disable-next-line:variable-name
+ private _clients: Array<Client>;
   get commande(): Commande {
     if (this._commande == null) {
       this._commande = new Commande();
@@ -106,6 +112,28 @@ export class FactureService {
 
   set currencys(value: Array<Currency>) {
     this._currencys = value;
+  }
+
+  get client(): Client {
+    if (this._client == null) {
+      this._client = new Client();
+    }
+    return this._client;
+  }
+
+  set client(value: Client) {
+    this._client = value;
+  }
+
+  get clients(): Array<Client> {
+    if (this._clients == null) {
+      this._clients = new Array<Client>();
+    }
+    return this._clients;
+  }
+
+  set clients(value: Array<Client>) {
+    this._clients = value;
   }
 
   get factureEtat(): FactureEtat {
@@ -213,6 +241,60 @@ export class FactureService {
       }
     );
   }
+  public findAllCommande() {
+    this.http.get<Array<Commande>>('http://localhost:8041/gestionFacturation/commande/').subscribe(
+      data => {
+        this.commandes = data;
+      }
+    );
+  }
+  public findAllCurrencies() {
+    this.http.get<Array<Currency>>('http://localhost:8041/gestionFacturation/currency/').subscribe(
+      data => {
+        this.currencys = data;
+      }
+    );
+  }
+  public findAllDevis() {
+    this.http.get<Array<Devis>>('http://localhost:8041/gestionFacturation/devise/').subscribe(
+      data => {
+        this.listeDevis = data;
+      }
+    );
+  }
+  public findAllClient() {
+    this.http.get<Array<Client>>('http://localhost:8041/gestionFacturation/client/').subscribe(
+      data => {
+        this.clients = data;
+      }
+    );
+  }
+  success() {
+    const dialogRef = this.dialog.open(DeviseSuccessComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  saveDevise() {
+    this.http.post<number>('http://localhost:8041/gestionFacturation/currency/', this.currency).subscribe(
+      data => {
+        if (data > 0) {
+          this.success();
+        }
+        this._currency = {
+          id: 0,
+          nom: '',
+          code: '',
+          symbol: ''
+        };
+      },
+      err => {
+        alert('there is some error that has been marked');
+      }
+    );
+  }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();
@@ -235,7 +317,7 @@ export class FactureService {
     this._factures = value;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , public dialog: MatDialog) { }
 
   private CloneFacture(facture: Facture) {
     const myClone = new Facture();
@@ -253,6 +335,10 @@ export class FactureService {
     myClone.totalHtnet = facture.totalHtnet;
     myClone.cdtpaiment = facture.cdtpaiment;
     myClone.notes = facture.notes;
+    myClone.comptabilise = facture.comptabilise;
+    myClone.commande = facture.commande;
+    myClone.devis = facture.devis;
+    myClone.currency = facture.currency;
     myClone.factureEtat = facture.factureEtat;
     myClone.factureStatut = facture.factureStatut;
     myClone.commentaire = facture.commentaire;

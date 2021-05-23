@@ -35,23 +35,27 @@
       <h3 style="margin-left: -57px">Informations Devis :</h3>
       <mat-form-field appearance="fill" >
         <mat-label >Reference</mat-label>
-        <input matInput type="text"  >
-      </mat-form-field>
+        <mat-select disableRipple [(ngModel)]="facture.devis"  >
+          <mat-option  *ngFor="let l of listeDevis" [value]="l"   >{{l.reference}}</mat-option>
+        </mat-select>      </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
       <h3>Informations Commandes :</h3>
       <mat-form-field appearance="fill" >
         <mat-label >Reference</mat-label>
-        <input matInput type="text"  >
+        <mat-select disableRipple [(ngModel)]="facture.commande"  >
+          <mat-option  *ngFor="let c of commandes" [value]="c"   >{{c.reference}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
       <h3>Informations Clients :</h3>
       <mat-form-field appearance="fill"  >
         <mat-label >Reference</mat-label>
-        <input matInput type="text" a  >
+        <mat-select disableRipple [(ngModel)]="commande.client"  >
+          <mat-option  *ngFor="let c of clients" [value]="c"   >{{c.nom}}</mat-option>
+        </mat-select>
       </mat-form-field>
-          <div>  <button mat-raised-button color="primary" >Choisir</button></div>
     </mat-grid-tile>
 
   </mat-grid-list>
@@ -59,9 +63,9 @@
 
 
 <mat-grid-list cols="2" style="margin-top: 10px; " >
-  <mat-grid-tile style="margin-left: -220px;padding-bottom: 90px">
+    <mat-grid-tile style="margin-left: -154px;padding-bottom: 280px">
 <div >
-    <h4 style="margin-top: 90px">Informations Tarifaires :</h4>
+    <h4 style="margin-top: 274px">Informations Tarifaires :</h4>
   <mat-form-field appearance="fill">
     <mat-label>Prix</mat-label>
     <input matInput type="number" placeholder="000 000, 00"  [(ngModel)]="facture.prix" >
@@ -101,6 +105,12 @@
       <input matInput type="number" placeholder="00 Jours" [(ngModel)]="facture.cdtpaiment" >
     </mat-form-field>
   </div>
+    <form>
+      <mat-label>Devise</mat-label>
+    <button mat-raised-button color="primary" class="example-margin" style=" background-color: blueviolet; color: white" (click)="creatDevise()">Crée un devise</button>
+    <button mat-raised-button class="example-margin" style="background-color: green; color: white" (click)="findDevise()" >Choisir un devise</button>
+
+  </form>
     <div>
       <form>
       <mat-label>TVA </mat-label>
@@ -119,7 +129,7 @@
       <textarea matInput placeholder="Note"  [(ngModel)]="facture.notes" ></textarea>
     </mat-form-field>
   </div>
-  <div style="margin-bottom: 100px">
+  <div style="margin-bottom: 220px">
     <mat-form-field appearance="fill">
       <mat-label>Commentaire</mat-label>
       <textarea matInput placeholder="Comment" [(ngModel)]="facture.commentaire"></textarea>
@@ -136,7 +146,7 @@
   </mat-grid-tile>
 
 </mat-grid-list>
-<mat-card style="margin-top: 50px">
+<mat-card style="margin-top: 290px">
 <h3>État de la Facture :</h3>
 <form>
   <mat-label>Transmise :</mat-label>

@@ -22,9 +22,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'échéance</th>
       <td mat-cell *matCellDef="let element "> {{element.dateEchaence}} </td>
     </ng-container>
-    <ng-container matColumnDef="totalHtnet" >
+  <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef> Client </th>
+    <td mat-cell *matCellDef="let element "> {{element.commande.client.nom}} </td>
+  </ng-container>
+    <ng-container matColumnDef="total" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-      <td mat-cell *matCellDef="let element "> {{element.totalHtnet}} </td>
+      <td mat-cell *matCellDef="let element "> {{element.total}} </td>
     </ng-container>
   <ng-container matColumnDef="factureEtat" >
     <th mat-header-cell *matHeaderCellDef> État </th>
@@ -33,6 +37,10 @@
   <ng-container matColumnDef="factureStatut">
     <th mat-header-cell *matHeaderCellDef> Statut </th>
     <td mat-cell *matCellDef="let element "> {{element.factureStatut.nom}} </td>
+  </ng-container>
+  <ng-container matColumnDef="commande">
+    <th mat-header-cell *matHeaderCellDef> Commande </th>
+    <td mat-cell *matCellDef="let element "> {{element.commande.reference}} </td>
   </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>

@@ -10,6 +10,12 @@ import {FactureStatut} from '../../../controller/model/facture-statut.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {Commande} from '../../../controller/model/commande.model';
+import {Devis} from '../../../controller/model/devis.model';
+import {Currency} from '../../../controller/model/currency.model';
+import {Client} from '../../../controller/model/client.model';
+import {DeviseCreateComponent} from '../../devise/devise-create/devise-create.component';
+import {FindDeviseComponent} from '../../devise/find-devise/find-devise.component';
 
 
 @Component({
@@ -38,6 +44,33 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   get factureStatut(): FactureStatut {
     return this.factureService.factureStatut;
   }
+  get commande(): Commande {
+    return this.factureService.commande;
+  }
+  get commandes(): Array<Commande> {
+    return this.factureService.commandes;
+  }
+  get devis(): Devis {
+    return this.factureService.devis;
+  }
+
+
+  get listeDevis(): Array<Devis> {
+    return this.factureService.listeDevis;
+  }
+
+  get currency(): Currency {
+    return this.factureService.currency;
+  }
+  get currencys(): Array<Currency> {
+    return this.factureService.currencys;
+  }
+  get client(): Client {
+    return this.factureService.client;
+  }
+  get clients(): Array<Client> {
+    return this.factureService.clients;
+  }
   // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Paiment[];
   displayedColumns: string[] = ['datePaiment', 'paimentMethode' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
@@ -47,7 +80,7 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
     display = false;
-
+  displayDevise = false;
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -75,6 +108,10 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
     ngOnInit() {
       this.factureService.findAllFactureEtat();
       this.factureService.findAllFactureStatut();
+      this.factureService.findAllCommande();
+      this.factureService.findAllClient();
+      this.factureService.findAllDevis();
+      this.factureService.findAllCurrencies();
       this.paimentService.findAllPaimentMethode();
       this.findAll();
     }
@@ -82,7 +119,19 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
     const resp = this.paimentService.findAll();
     resp.subscribe(report => this.dataSource.data = report as Paiment[]);
   }
+  creatDevise() {
+    const dialogRef = this.dailog.open(DeviseCreateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
+  findDevise() {
+    const dialogRef = this.dailog.open(FindDeviseComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   openDialog() {
    this.dailog.open(PaimentDailogComponent);
   }

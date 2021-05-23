@@ -29,6 +29,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { DeleteDailogComponent } from './view/factures/delete-dailog/delete-dailog.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { DeviseComponent } from './view/devise/devise.component';
+import { FindDeviseComponent } from './view/devise/find-devise/find-devise.component';
+import { DeviseSuccessComponent } from './view/devise/devise-success/devise-success.component';
+import {DeviseCreateComponent} from './view/devise/devise-create/devise-create.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +41,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     PaimentDailogComponent,
     MenuComponent,
     PageNoteFoundedComponent,
-    DeleteDailogComponent
+    DeleteDailogComponent,
+    DeviseComponent,
+    DeviseCreateComponent,
+    FindDeviseComponent,
+    DeviseSuccessComponent
   ],
-  entryComponents: [PaimentDailogComponent, DeleteDailogComponent],
+  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

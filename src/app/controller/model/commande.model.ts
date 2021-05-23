@@ -19,4 +19,9 @@ export class Commande {
   public currency: Currency;
   // tslint:disable-next-line:align
   public deliveries = new Array <Delivery>();
+
+  constructor() {
+    this.id = 0;
+    this.reference = '';
+  }
 }

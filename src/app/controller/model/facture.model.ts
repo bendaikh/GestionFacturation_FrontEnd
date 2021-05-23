@@ -3,6 +3,7 @@ import {FactureStatut} from './facture-statut.model';
 import {Commande} from './commande.model';
 import {Currency} from './currency.model';
 import {Devis} from './devis.model';
+import {Client} from './client.model';
 
 export class Facture {
   public id: number;
@@ -24,9 +25,11 @@ export class Facture {
   public cdtpaiment: number;
   public notes: string;
   public commentaire: string;
+  public comptabilise: boolean;
   public factureEtat: FactureEtat;
   public factureStatut: FactureStatut;
   public commande: Commande;
   public currency: Currency;
   public devis: Devis;
+  public client: Client;
 }

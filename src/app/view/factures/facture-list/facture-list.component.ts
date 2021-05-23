@@ -29,7 +29,8 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   }
   // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Facture[];
-  displayedColumns: string[] = ['reference', 'dateCreation' , 'dateEchaence' , 'totalHtnet' , 'factureEtat' , 'factureStatut', 'action'];
+  // tslint:disable-next-line:max-line-length
+  displayedColumns: string[] = ['reference', 'dateCreation' , 'dateEchaence', 'client'  , 'total' , 'factureEtat' , 'factureStatut', 'commande' , 'action'];
   // tslint:disable-next-line:variable-name
    private _dataSource = new MatTableDataSource<Facture>(this.ELEMENT_DATA);
   // @ts-ignore
@@ -56,6 +57,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   }
   ngOnInit() {
     this.findAll();
+    console.log(this.findAll());
   }
   public  findAll()  {
     const resp = this.factureService.findAll();

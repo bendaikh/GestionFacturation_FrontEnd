@@ -1,0 +1,9 @@
+<h4>les devises</h4>
+<mat-form-field apearance="fill" >
+  <mat-label>choisir le devise</mat-label>
+  <mat-select [(ngModel)]="facture.currency" >
+    <mat-option *ngFor="let devise of currencys" [value]="devise">
+      {{devise.nom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
