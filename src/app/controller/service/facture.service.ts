@@ -9,6 +9,7 @@ import {Currency} from '../model/currency.model';
 import {Client} from '../model/client.model';
 import {DeviseSuccessComponent} from '../../view/devise/devise-success/devise-success.component';
 import {MatDialog} from '@angular/material';
+import {Delivery} from '../model/delivery.model';
 
 @Injectable({
   providedIn: 'root'
@@ -295,6 +296,10 @@ export class FactureService {
       }
     );
   }
+ public findLivraisonByCommandeReference(commande: Commande) {
+    // @ts-ignore
+   return this.http.get<Array<Delivery>>('http://localhost:8041/gestionFacturation/delivery/commande/reference/' +  commande.reference);
+ }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();

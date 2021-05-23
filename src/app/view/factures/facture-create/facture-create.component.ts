@@ -16,6 +16,7 @@ import {Currency} from '../../../controller/model/currency.model';
 import {Client} from '../../../controller/model/client.model';
 import {DeviseCreateComponent} from '../../devise/devise-create/devise-create.component';
 import {FindDeviseComponent} from '../../devise/find-devise/find-devise.component';
+import {Delivery} from '../../../controller/model/delivery.model';
 
 
 @Component({
@@ -75,6 +76,10 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   ELEMENT_DATA: Paiment[];
   displayedColumns: string[] = ['datePaiment', 'paimentMethode' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
   dataSource = new MatTableDataSource<Paiment>(this.ELEMENT_DATA) ;
+  ELEMENT_DATA2: Delivery[];
+  // tslint:disable-next-line:max-line-length
+  dispalyedColumns2: string[] = ['reference', 'creation_date', 'delivery_date', 'cmr_Commodity', 'cmr_Shipping_Adress', 'cmr_Recipient_Address'];
+  dataSource2 = new MatTableDataSource<Delivery>(this.ELEMENT_DATA2) ;
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
@@ -114,10 +119,17 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
       this.factureService.findAllCurrencies();
       this.paimentService.findAllPaimentMethode();
       this.findAll();
+      // @ts-ignore
+      this.findLivraisonByCommandeReference();
     }
   public  findAll()  {
     const resp = this.paimentService.findAll();
     resp.subscribe(report => this.dataSource.data = report as Paiment[]);
+  }
+  public findLivraisonByCommandeReference(commande: Commande) {
+    console.log(commande);
+    const resp = this.factureService.findLivraisonByCommandeReference(commande);
+    resp.subscribe(report => this.dataSource2.data = report as Delivery[]);
   }
   creatDevise() {
     const dialogRef = this.dailog.open(DeviseCreateComponent);
