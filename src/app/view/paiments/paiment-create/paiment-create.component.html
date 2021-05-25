@@ -4,18 +4,23 @@
 <mat-card>
   <h3 style="margin-left: 30px" >Informations de la créance</h3>
   <mat-form-field appearance="fill" style="margin-left: 65px" >
-    <mat-label >Chercher par facture : </mat-label>
-    <input matInput type="text"  >
+    <mat-label>Chercher par facture : </mat-label>
+    <mat-select disableRipple  [(ngModel)]="paiment.facture">
+      <mat-option *ngFor="let f of factures" [value]="f"  >
+        {{f.reference}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" style="margin-left: 30px" >
-    <mat-label >Chercher par client :</mat-label>
-    <input matInput type="text" >
+    <mat-label >Reference</mat-label>
+    <mat-select disableRipple [(ngModel)]="commande.client"  >
+      <mat-option  *ngFor="let c of clients" [value]="c"   >{{c.nom}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <div style="margin-left: 30px" >
     <h3>Informations de facturation</h3>
   <mat-form-field appearance="fill" style="margin-left: 30px" >
     <mat-label >Référence Facture :</mat-label>
-    <input matInput type="text"  >
+    <input matInput type="text"  [(ngModel)]="paiment.reference" >
   </mat-form-field>
     <mat-form-field appearance="fill" style="margin-left: 30px" >
       <mat-label >Total à payer :</mat-label>
@@ -34,8 +39,8 @@
     </mat-form-field>
     <mat-form-field appearance="fill" style="margin-left: 30px">
       <mat-label>Mode de paiment</mat-label>
-      <mat-select disableRipple [(ngModel)]="paimentMethode.id" >
-       <mat-option *ngFor="let p of paimentMethodes" [value]="p.id"  >
+      <mat-select disableRipple [(ngModel)]="paiment.paimentMethode" >
+       <mat-option *ngFor="let p of paimentMethodes" [value]="p"  >
         {{p.nom}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -50,9 +55,9 @@
 
   <div style="margin-left: 30px" >
   <h3>État du paiement :</h3><mat-label>Comptabilisée :</mat-label>
-    <mat-checkbox class="example-margin" ></mat-checkbox>
+    <mat-checkbox class="example-margin" [ngModel]="paiment.paimentStatut" ></mat-checkbox>
     <mat-label>Enregistré :</mat-label>
-    <mat-checkbox class="example-margin" ></mat-checkbox>
+    <mat-checkbox class="example-margin"  [ngModel]="paiment.paimentStatut" ></mat-checkbox>
   </div>
   <button mat-raised-button color="warn" style="margin: 40px">Quitter</button>
-  <button mat-raised-button style="margin: 40px; background-color: green; color: white">Enregistrer</button></mat-card>
+  <button mat-raised-button style="margin: 40px; background-color: green; color: white" (click)="save()">Enregistrer</button></mat-card>

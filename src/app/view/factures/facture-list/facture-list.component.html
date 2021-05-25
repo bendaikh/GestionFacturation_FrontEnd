@@ -54,6 +54,9 @@
         <button mat-icon-button color="primary" aria-label="iconButton">
           <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
         </button>
+        <button mat-icon-button color="warn" aria-label="iconButton" (click)="generatePDF(element)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">print</mat-icon>
+        </button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -10,6 +10,7 @@ import {Client} from '../model/client.model';
 import {DeviseSuccessComponent} from '../../view/devise/devise-success/devise-success.component';
 import {MatDialog} from '@angular/material';
 import {Delivery} from '../model/delivery.model';
+import {CommandeType} from '../model/commande-type.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,21 @@ export class FactureService {
   // tslint:disable-next-line:variable-name
  private _client: Client;
   // tslint:disable-next-line:variable-name
+ private _commandeType: CommandeType;
+  // tslint:disable-next-line:variable-name
  private _clients: Array<Client>;
+
+  get commandeType(): CommandeType {
+    if (this._commandeType == null ) {
+      this._commandeType = new CommandeType();
+    }
+    return this._commandeType;
+  }
+
+  set commandeType(value: CommandeType) {
+    this._commandeType = value;
+  }
+
   get commande(): Commande {
     if (this._commande == null) {
       this._commande = new Commande();
@@ -332,7 +347,7 @@ export class FactureService {
     myClone.dateEchaence = facture.dateEchaence;
     myClone.prix = facture.prix;
     myClone.quantite = facture.quantite;
-    myClone.totalht = facture.totalht;
+    myClone.totalHt = facture.totalHt;
     myClone.remise_val = facture.remise_val;
     myClone.remise_pourcentage = facture.remise_pourcentage;
     myClone.tva_val = facture.tva_val;
@@ -340,6 +355,7 @@ export class FactureService {
     myClone.totalHtnet = facture.totalHtnet;
     myClone.cdtpaiment = facture.cdtpaiment;
     myClone.notes = facture.notes;
+    myClone.total = facture.total;
     myClone.comptabilise = facture.comptabilise;
     myClone.commande = facture.commande;
     myClone.devis = facture.devis;

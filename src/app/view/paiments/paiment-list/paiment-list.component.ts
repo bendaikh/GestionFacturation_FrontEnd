@@ -51,6 +51,7 @@ export class PaimentListComponent implements OnInit , AfterViewInit {
     this.paimentService.update(index, paiment);
   }
     ngOnInit() {
+    console.log(this.paiment);
     this.findAll();
   }
   public  findAll()  {

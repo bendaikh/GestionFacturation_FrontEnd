@@ -12,7 +12,7 @@ export class Facture {
   public dateEchaence: Date;
   public prix: number;
   public quantite: number;
-  public totalht: number;
+  public totalHt: number;
   // tslint:disable-next-line:variable-name
   public remise_val: number;
   // tslint:disable-next-line:variable-name
@@ -24,6 +24,7 @@ export class Facture {
   public totalHtnet: number;
   public cdtpaiment: number;
   public notes: string;
+  public total: number;
   public commentaire: string;
   public comptabilise: boolean;
   public factureEtat: FactureEtat;

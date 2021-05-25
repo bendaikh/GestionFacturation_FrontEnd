@@ -1,26 +1,39 @@
 <h3 mat-dialog-title style="background-color: orange;">Nouveau Paiment</h3>
 <mat-form-field appearance="fill">
-  <mat-label>Date du paiment</mat-label>
-  <input matInput type="date">
+  <mat-label>Référence</mat-label>
+  <input matInput type="text" [(ngModel)]="paiment.reference">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Mode de paiment</mat-label>
+  <mat-select disableRipple  [(ngModel)]="paiment.facture">
+    <mat-option *ngFor="let f of factures" [value]="f"  >
+      {{f.reference}}</mat-option>
+  </mat-select>
 </mat-form-field>
 <div>
 <mat-form-field appearance="fill">
+  <mat-label>Date du paiment</mat-label>
+  <input matInput type="date" [(ngModel)]="paiment.datePaiment">
+</mat-form-field>
+</div>
+<div>
+<mat-form-field appearance="fill">
   <mat-label>Mode de paiment</mat-label>
-  <mat-select disableRipple  [(ngModel)]="paimentMethode.id">
-    <mat-option *ngFor="let p of paimentMethodes" [value]="p.id"  >
+  <mat-select disableRipple  [(ngModel)]="paiment.paimentMethode">
+    <mat-option *ngFor="let p of paimentMethodes" [value]="p"  >
       {{p.nom}}</mat-option>
   </mat-select>
 </mat-form-field></div>
 <div>
 <mat-form-field appearance="fill">
   <mat-label>Montant</mat-label>
-  <input matInput type="number" placeholder="000 000,00">
+  <input matInput type="number" placeholder="000 000,00" [(ngModel)]="paiment.montant">
 </mat-form-field>
 </div>
   <div>
 <mat-form-field appearance="fill">
   <mat-label>Libellé</mat-label>
-  <textarea matInput></textarea>
+  <textarea matInput [(ngModel)]="paiment.commentaire"></textarea>
 </mat-form-field>
 </div>
 <mat-dialog-actions>

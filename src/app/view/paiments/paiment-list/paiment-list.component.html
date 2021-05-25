@@ -19,7 +19,7 @@
   </ng-container>
   <ng-container matColumnDef="client">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
-    <td mat-cell *matCellDef="let element "> {{element.client}} </td>
+    <td mat-cell *matCellDef="let element "> {{element.facture.commande.client.nom}} </td>
   </ng-container>
   <ng-container matColumnDef="montant" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant</th>
@@ -27,7 +27,7 @@
   </ng-container>
   <ng-container matColumnDef="paimentStatut">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut paiment </th>
-    <td mat-cell *matCellDef="let element"> {{element.paimentStatut}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.paimentStatut.nom}} </td>
   </ng-container>
 
   <ng-container matColumnDef="facture">
@@ -36,7 +36,7 @@
   </ng-container>
   <ng-container matColumnDef="factureStatut">
     <th mat-header-cell *matHeaderCellDef> FactureStatut </th>
-    <td mat-cell *matCellDef="let element"> {{element.factureStatut}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.facture.factureStatut.nom}} </td>
   </ng-container>
   <ng-container matColumnDef="reste" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Reste </th>

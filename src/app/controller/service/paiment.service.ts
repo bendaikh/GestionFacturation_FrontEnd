@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Paiment} from '../model/paiment.model';
 import {HttpClient} from '@angular/common/http';
 import {PaimentMethode} from '../model/paiment-methode.model';
+import {Commande} from '../model/commande.model';
+import {Client} from '../model/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,30 @@ export class PaimentService {
   private _paimentMethode: PaimentMethode;
   // tslint:disable-next-line:variable-name
   private _paimentMethodes: Array<PaimentMethode>;
+  // tslint:disable-next-line:variable-name
+  private _commande: Commande;
+  // tslint:disable-next-line:variable-name
+  private _client: Client;
+  get client(): Client {
+    if (this._client == null) {
+      this._client = new Client();
+    }
+    return this._client;
+  }
+
+  set client(value: Client) {
+    this._client = value;
+  }
+  get commande(): Commande {
+    if (this._commande == null) {
+      this._commande = new Commande();
+    }
+    return this._commande;
+  }
+
+  set commande(value: Commande) {
+    this._commande = value;
+  }
 
   public deleteByReference(index: number, paiment: Paiment) {
     const link = this._urlBase + this._url + '/reference/' + paiment.reference;
@@ -122,7 +148,10 @@ export class PaimentService {
     myClone.dateCreation = paiment.dateCreation;
     myClone.montant = paiment.montant;
     myClone.reste = paiment.reste;
+    myClone.comptabilise = paiment.comptabilise;
     myClone.commentaire = paiment.commentaire;
+    myClone.paimentMethode = paiment.paimentMethode;
+    myClone.paimentStatut = paiment.paimentStatut;
     return myClone;
   }
 }
