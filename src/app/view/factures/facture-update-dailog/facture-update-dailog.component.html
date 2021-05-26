@@ -1,0 +1,187 @@
+<mat-card class="first-card">
+  <mat-card-title  >FleetT&M: Créer une Facture</mat-card-title>
+</mat-card>
+<mat-card>
+  <mat-card-title>Informations Factures</mat-card-title>
+  <mat-form-field appearance="fill" >
+    <mat-label >Facture n°</mat-label>
+    <input matInput type="text" [(ngModel)]="facture.reference" >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
+    <mat-label >Date de Création</mat-label>
+    <input matInput type="date" [(ngModel)]="facture.dateCreation">
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
+    <mat-label >Date d'échéance</mat-label>
+    <input matInput type="date" [(ngModel)]="facture.dateEchaence" >
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left: 30px" >
+    <mat-label>État</mat-label>
+    <mat-select disableRipple  [(ngModel)]="facture.factureEtat"  >
+      <mat-option *ngFor="let f of factureEtats" [value]="f"    >{{f.nom}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="margin-left: 30px">
+    <mat-label>Statut</mat-label>
+    <mat-select disableRipple [(ngModel)]="facture.factureStatut"  >
+      <mat-option  *ngFor="let f of factureStatuts" [value]="f"   >{{f.nom}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile>
+    <h3 style="margin-left: -57px">Informations Devis :</h3>
+    <mat-form-field appearance="fill" >
+      <mat-label >Reference</mat-label>
+      <mat-select disableRipple [(ngModel)]="facture.devis"  >
+        <mat-option  *ngFor="let l of listeDevis" [value]="l"   >{{l.reference}}</mat-option>
+      </mat-select>      </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h3>Informations Commandes :</h3>
+    <mat-form-field appearance="fill" >
+      <mat-label >Reference</mat-label>
+      <mat-select disableRipple [(ngModel)]="facture.commande" (click)="findLivraisonByCommandeReference(facture?.commande)"   >
+        <mat-option  *ngFor="let c of commandes" [value]="c"  >{{c.reference}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h3>Informations Clients :</h3>
+    <mat-form-field appearance="fill"  >
+      <mat-label >Reference</mat-label>
+      <mat-select disableRipple [(ngModel)]="commande.client"  >
+        <mat-option  *ngFor="let c of clients" [value]="c"   >{{c.nom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<h3>Liste des Livraisons:</h3>
+<div   class="mat-elevation-z8" >
+  <table mat-table [dataSource]="dataSource2" >
+    <ng-container matColumnDef="reference">
+      <th mat-header-cell *matHeaderCellDef >Référence </th>
+      <td mat-cell *matCellDef="let element "> {{element.reference}} </td>
+    </ng-container>
+    <ng-container matColumnDef="creation_date">
+      <th mat-header-cell *matHeaderCellDef>Date du chargement</th>
+      <td mat-cell *matCellDef="let element "> {{element.creation_date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="delivery_date">
+      <th mat-header-cell *matHeaderCellDef > Date déchargement</th>
+      <td mat-cell *matCellDef="let element "> {{element.delivery_date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cmr_Commodity">
+      <th mat-header-cell *matHeaderCellDef> Marchandises </th>
+      <td mat-cell *matCellDef="let element"> {{element.cmr_Commodity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cmr_Shipping_Adress">
+      <th mat-header-cell *matHeaderCellDef > Chargement à </th>
+      <td mat-cell *matCellDef="let element "> {{element.cmr_Shipping_Adress}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cmr_Recipient_Address">
+      <th mat-header-cell *matHeaderCellDef> Déchargement à </th>
+      <td mat-cell *matCellDef="let element "> {{element.cmr_Recipient_Address}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element ">  <button mat-icon-button color="warn" aria-label="iconButton">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+        <button mat-icon-button style="color: green" aria-label="iconButton" >
+          <mat-icon aria-hidden="false" aria-label="Example home icon">update</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" aria-label="iconButton">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
+        </button></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="dispalyedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: dispalyedColumns2;" ></tr>
+  </table>
+</div>
+<mat-grid-list cols="2" style="margin-top: 10px; " >
+  <mat-grid-tile style="margin-left: -154px;padding-bottom: 280px">
+    <div >
+      <h4 style="margin-top: 274px">Informations Tarifaires :</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Prix</mat-label>
+        <input matInput type="number" placeholder="000 000, 00"  [(ngModel)]="facture.prix" >
+      </mat-form-field>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Quantité</mat-label>
+          <input matInput type="number" placeholder="00,00" [(ngModel)]="facture.quantite" >
+        </mat-form-field>
+
+      </div>
+
+      <mat-card style=" margin-right: 143px; background-color: lightgray; ">{{montant(facture)}}</mat-card>
+      <br>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Remise en valeur</mat-label>
+          <input matInput type="number" placeholder="000 000, 00" [(ngModel)]="facture.remise_val" >
+        </mat-form-field>
+
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Remise en %</mat-label>
+          <input matInput type="number" placeholder="00, 00 %"  [(ngModel)]="facture.remise_pourcentage" >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Conditions de paiment</mat-label>
+          <input matInput type="number" placeholder="00 Jours" [(ngModel)]="facture.cdtpaiment" >
+        </mat-form-field>
+      </div>
+      <form>
+        <mat-label>Devise</mat-label>
+        <button mat-raised-button color="primary" class="example-margin" style=" background-color: blueviolet; color: white" (click)="creatDevise()">Crée un devise</button>
+        <button mat-raised-button class="example-margin" style="background-color: green; color: white" (click)="findDevise()" >Choisir un devise</button>
+
+      </form>
+      <div>
+        <form>
+          <mat-label>TVA </mat-label>
+          <mat-checkbox class="example-margin" (click)="display=true" >Oui</mat-checkbox>
+          <mat-checkbox class="example-margin" (click)="display = false">Non</mat-checkbox>
+        </form></div>
+      <div *ngIf="display">
+        <mat-form-field appearance="fill">
+          <mat-label>Taux</mat-label>
+          <input matInput type="number" placeholder="00, 00 %" [(ngModel)]="facture.tva_pourcentage" >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Notes</mat-label>
+          <textarea matInput placeholder="Note"  [(ngModel)]="facture.notes" ></textarea>
+        </mat-form-field>
+      </div>
+      <div style="margin-bottom: 220px">
+        <mat-form-field appearance="fill">
+          <mat-label>Commentaire</mat-label>
+          <textarea matInput placeholder="Comment" [(ngModel)]="facture.commentaire"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile style="margin-left: -120px">
+    <button mat-raised-button color="warn" style="margin: 40px">Quitter</button>
+    <button mat-raised-button color="primary" style="margin: 40px; background-color: blueviolet; color: white">Éditer</button>
+    <button mat-raised-button style="margin: 40px; background-color: green; color: white" (click)="save()">Enregistrer</button>
+
+  </mat-grid-tile>
+
+</mat-grid-list>

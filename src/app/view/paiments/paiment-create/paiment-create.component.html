@@ -5,7 +5,7 @@
   <h3 style="margin-left: 30px" >Informations de la créance</h3>
   <mat-form-field appearance="fill" style="margin-left: 65px" >
     <mat-label>Chercher par facture : </mat-label>
-    <mat-select disableRipple  [(ngModel)]="paiment.facture">
+    <mat-select disableRipple  [(ngModel)]="paiment.facture" (click)="findFacturefindByReference(paiment?.facture)" >
       <mat-option *ngFor="let f of factures" [value]="f"  >
         {{f.reference}}</mat-option>
     </mat-select>
@@ -22,10 +22,7 @@
     <mat-label >Référence Facture :</mat-label>
     <input matInput type="text"  [(ngModel)]="paiment.reference" >
   </mat-form-field>
-    <mat-form-field appearance="fill" style="margin-left: 30px" >
-      <mat-label >Total à payer :</mat-label>
-      <input matInput type="text" >
-    </mat-form-field>
+   <mat-card style="padding-right: 130px;margin-left: 30px; height: 20px ; padding-top: 26px;display: inline; background-color: lightgray">{{paiment.facture?.total}}</mat-card>
   </div>
   <div style="margin-left: 30px" >
     <h3>Détails du paiement :</h3>

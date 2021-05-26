@@ -33,6 +33,11 @@ import { DeviseComponent } from './view/devise/devise.component';
 import { FindDeviseComponent } from './view/devise/find-devise/find-devise.component';
 import { DeviseSuccessComponent } from './view/devise/devise-success/devise-success.component';
 import {DeviseCreateComponent} from './view/devise/devise-create/devise-create.component';
+import { PaimentDeleteDailogComponent } from './view/paiments/paiment-delete-dailog/paiment-delete-dailog.component';
+import { PaimentUpdateDailogComponent } from './view/paiments/paiment-update-dailog/paiment-update-dailog.component';
+import { FactureUpdateDailogComponent } from './view/factures/facture-update-dailog/facture-update-dailog.component';
+import { PaimentDetailDailogComponent } from './view/paiments/paiment-detail-dailog/paiment-detail-dailog.component';
+import { FactureDetailDailogComponent } from './view/factures/facture-detail-dailog/facture-detail-dailog.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +50,15 @@ import {DeviseCreateComponent} from './view/devise/devise-create/devise-create.c
     DeviseComponent,
     DeviseCreateComponent,
     FindDeviseComponent,
-    DeviseSuccessComponent
+    DeviseSuccessComponent,
+    PaimentDeleteDailogComponent,
+    PaimentUpdateDailogComponent,
+    FactureUpdateDailogComponent,
+    PaimentDetailDailogComponent,
+    FactureDetailDailogComponent
   ],
-  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, FactureUpdateDailogComponent, PaimentDetailDailogComponent, FactureDetailDailogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

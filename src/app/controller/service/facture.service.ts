@@ -315,6 +315,9 @@ export class FactureService {
     // @ts-ignore
    return this.http.get<Array<Delivery>>('http://localhost:8041/gestionFacturation/delivery/commande/reference/' +  commande.reference);
  }
+ public findFacturefindByReference(facture: Facture) {
+    return this.http.get<Facture>(this._urlBase + this._url + '/reference/' + facture.reference);
+ }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();

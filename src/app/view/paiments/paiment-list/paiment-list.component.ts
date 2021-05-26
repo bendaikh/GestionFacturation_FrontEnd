@@ -6,6 +6,8 @@ import {Facture} from '../../../controller/model/facture.model';
 import {FactureService} from '../../../controller/service/facture.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {DeleteDailogComponent} from '../../factures/delete-dailog/delete-dailog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-paiment-list',
@@ -15,7 +17,7 @@ import {MatSort} from '@angular/material/sort';
 
 export class PaimentListComponent implements OnInit , AfterViewInit {
 
-  constructor(private paimentService: PaimentService ) { }
+  constructor(private paimentService: PaimentService, public dailog: MatDialog ) { }
   get paiment(): Paiment {
     return this.paimentService.paiment;
   }
@@ -58,5 +60,21 @@ export class PaimentListComponent implements OnInit , AfterViewInit {
     const resp = this.paimentService.findAll();
     resp.subscribe(report => this.dataSource.data = report as Paiment[]);
   }
-
+  openDialog(index: number , paiment: Paiment) {
+    console.log('Hadi 9bel Matdkhel ' + paiment);
+    // @ts-ignore
+    const dialogRef = this.dailog.open(DeleteDailogComponent, {
+      width: '350px',
+      data: 'Are you sure that you want delete this record?'
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        console.log(res.reference);
+        if (res) {
+          this.paimentService.deleteByReference(index, paiment);
+          console.log(res.reference);
+        }
+      }
+    );
+  }
 }

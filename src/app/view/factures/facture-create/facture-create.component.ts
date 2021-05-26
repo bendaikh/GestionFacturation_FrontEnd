@@ -77,6 +77,12 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   get clients(): Array<Client> {
     return this.factureService.clients;
   }
+get factures(): Array<Facture> {
+    return this.factureService.factures;
+  }
+  get commandeType(): CommandeType {
+    return this.factureService.commandeType;
+  }
   // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Paiment[];
   displayedColumns: string[] = ['datePaiment', 'paimentMethode' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
@@ -89,8 +95,15 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
-    display = false;
+  display = false;
   displayDevise = false;
+  montant(facture: Facture) {
+    // tslint:disable-next-line:triple-equals
+    if (facture.prix == 0 && facture.quantite == 0) {
+      return facture.totalHt = 0;
+    }
+    return facture.totalHt = this.facture.prix * this.facture.quantite;
+  }
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -144,10 +157,7 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  } get factures(): Array<Facture> {
-    return this.factureService.factures;
-  }
-    generatePDF() {
+  }     generatePDF() {
     console.log(this.factures.map(ed => {
       return ed.reference;
     }
@@ -343,9 +353,6 @@ export class FactureCreateComponent implements OnInit , AfterViewInit {
         },
       }
     };
-  }
-  get commandeType(): CommandeType {
-    return this.factureService.commandeType;
   }
   downloadPDF() {
   console.log('downloading pdf .....');

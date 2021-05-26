@@ -43,7 +43,7 @@
       <h3>Informations Commandes :</h3>
       <mat-form-field appearance="fill" >
         <mat-label >Reference</mat-label>
-        <mat-select disableRipple [(ngModel)]="facture.commande" (click)="findLivraisonByCommandeReference(facture.commande)"   >
+        <mat-select disableRipple [(ngModel)]="facture.commande" (click)="findLivraisonByCommandeReference(facture?.commande)"   >
           <mat-option  *ngFor="let c of commandes" [value]="c"  >{{c.reference}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -120,13 +120,10 @@
     </mat-form-field>
 
   </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Montant de la perstation</mat-label>
-      <input matInput type="number" placeholder="000 000, 00"  [(ngModel)]="facture.totalht">
-    </mat-form-field>
 
-  </div>
+    <mat-card style=" margin-right: 143px; background-color: lightgray; ">{{montant(facture)}}</mat-card>
+    <br>
+
   <div>
     <mat-form-field appearance="fill">
       <mat-label>Remise en valeur</mat-label>

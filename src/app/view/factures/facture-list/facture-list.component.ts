@@ -13,6 +13,10 @@ import html2canvas from 'html2canvas';
 import {isCanvasElement} from 'html2canvas/dist/types/dom/node-parser';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import {FactureDetailDailogComponent} from '../facture-detail-dailog/facture-detail-dailog.component';
+import {FactureUpdateDailogComponent} from '../facture-update-dailog/facture-update-dailog.component';
+import {Delivery} from '../../../controller/model/delivery.model';
+import {Commande} from '../../../controller/model/commande.model';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -62,7 +66,6 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   }
   ngOnInit() {
     this.findAll();
-    console.log(this.findAll());
   }
   public  findAll()  {
     const resp = this.factureService.findAll();
@@ -194,6 +197,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
           text: '                                                ',
         },
         {
+          alignment: 'right',
           table: {
             aligment: 'right',
             style: 'tb',
@@ -289,5 +293,30 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         }
       }
     );
+  }
+  openDailogInfo(facture: Facture) {
+    console.log('Hadi 9bel Matdkhel ' + facture);
+    const dialogRef = this.dailog.open(FactureDetailDailogComponent, {
+      data: facture
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        console.log(res.reference);
+        if (res) {
+          this.factureService.findFacturefindByReference(facture);
+          console.log(res.reference);
+        }
+      }
+    );
+  }
+  openDailogUpadte(index: number, facture: Facture) {
+    console.log('Hadi 9bel Matdkhel ' + facture);
+    // tslint:disable-next-line:triple-equals
+    // @ts-ignore
+    // tslint:disable-next-line:triple-equals
+    const fact = this.factureService.factures.find(c => c.reference == facture);
+    const dialogRef = this.dailog.open(FactureUpdateDailogComponent, {
+      data: facture
+    });
   }
 }

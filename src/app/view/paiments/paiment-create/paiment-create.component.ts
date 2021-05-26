@@ -23,8 +23,20 @@ export class PaimentCreateComponent implements OnInit {
   }
   ngOnInit() {
     this.paimentService.findAllPaimentMethode();
-    this.findAllFacture();
     this.factureService.findAllClient();
+    this.findAllFacture();
+  }
+  public findFacturefindByReference(facture: Facture) {
+    const fac = this.factureService.findFacturefindByReference(facture);
+    fac.subscribe(
+      data => {
+        this.paiment.facture = data ;
+      }
+    );
+    console.log(this.paiment.facture.total);
+  }
+    get paiments(): Array<Paiment> {
+    return this.paimentService.paiments;
   }
   get client(): Client {
     return this.factureService.client;
