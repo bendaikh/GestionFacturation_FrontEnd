@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FactureService} from '../../../controller/service/facture.service';
 import {Facture} from '../../../controller/model/facture.model';
@@ -17,21 +19,33 @@ import {Client} from '../../../controller/model/client.model';
 import {DeviseCreateComponent} from '../../devise/devise-create/devise-create.component';
 import {FindDeviseComponent} from '../../devise/find-devise/find-devise.component';
 import {Delivery} from '../../../controller/model/delivery.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 // import {jsPDF} from 'jspdf';
 // import 'jspdf-autotable';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {FactureListComponent} from '../facture-list/facture-list.component';
 import {CommandeType} from '../../../controller/model/commande-type.model';
+import {PaimentStatut} from '../../../controller/model/paiment-statut.model';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-facture-create',
   templateUrl: './facture-create.component.html',
-  styleUrls: ['./facture-create.component.css']
+  styleUrls: ['./facture-create.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+  }]
 })
 export class FactureCreateComponent implements OnInit , AfterViewInit {
 
-  constructor(private factureService: FactureService, public dailog: MatDialog, public paimentService: PaimentService ) { }
+  // tslint:disable-next-line:variable-name max-line-length
+  constructor(private _formBuilder: FormBuilder , private factureService: FactureService, public dailog: MatDialog, public paimentService: PaimentService ) { }
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fouthFormGroup: FormGroup;
+  isEditable = false;
   get facture(): Facture {
     return this.factureService.facture;
   }
@@ -83,10 +97,22 @@ get factures(): Array<Facture> {
   get commandeType(): CommandeType {
     return this.factureService.commandeType;
   }
+  get paimentStatut(): PaimentStatut {
+    return this.paimentService.paimentStatut;
+  }
+
+  get paiments(): Array<Paiment> {
+    return this.paimentService.paiments;
+  }
+  get paimentStatuts(): Array<PaimentStatut> {
+    return this.paimentService.paimentStatuts;
+    }
   // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Paiment[];
-  displayedColumns: string[] = ['datePaiment', 'paimentMethode' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
-  dataSource = new MatTableDataSource<Paiment>(this.ELEMENT_DATA) ;
+  displayedColumns: string[] = ['datePaiment' , 'montant' , 'commentaire' , 'reference' , 'comptabilise' , 'action'];
+  // tslint:disable-next-line:new-parens variable-name
+  // @ts-ignore
+  private dataSource = new MatTableDataSource(this.facture.paiments);
   ELEMENT_DATA2: Delivery[];
   // tslint:disable-next-line:max-line-length
   dispalyedColumns2: string[] = ['reference', 'creation_date', 'delivery_date', 'cmr_Commodity', 'cmr_Shipping_Adress', 'cmr_Recipient_Address'];
@@ -97,12 +123,31 @@ get factures(): Array<Facture> {
   @ViewChild(MatSort) sort: MatSort;
   display = false;
   displayDevise = false;
+  public delete(index: number) {
+     this.dataSource.data.splice(index, 1);
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
+  set paiment(value: Paiment) {
+    this.paimentService.paiment = value;
+  }
+  set index(value: number) {
+    this.factureService.index = value;
+  }
+  public updatePaiment(index: number , paiment: Paiment) {
+    this.paiment = this.paimentService.ClonePaiment(paiment);
+    this.factureService.index = index;
+    // @ts-ignore
+    this.dailog.open(PaimentDailogComponent , {
+      data: index
+    });
+  }
   montant(facture: Facture) {
     // tslint:disable-next-line:triple-equals
-    if (facture.prix == 0 && facture.quantite == 0) {
-      return facture.totalHt = 0;
+    if (facture.prix == null || facture.quantite == null) {
+      return facture.totalHt = 0 ;
+    } else {
+      return facture.totalHt = this.facture.prix * this.facture.quantite;
     }
-    return facture.totalHt = this.facture.prix * this.facture.quantite;
   }
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
@@ -126,20 +171,32 @@ get factures(): Array<Facture> {
   }
     ngOnInit() {
       this.factureService.findAllFactureEtat();
-      this.factureService.findAllFactureStatut();
       this.factureService.findAllCommande();
       this.factureService.findAllClient();
       this.factureService.findAllDevis();
       this.factureService.findAllCurrencies();
       this.paimentService.findAllPaimentMethode();
-      this.findAll();
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', Validators.required]
+      });
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', Validators.required]
+      });
+      this.thirdFormGroup = this._formBuilder.group({
+        thirdCtrl: ['', Validators.required]
+      });
+      this.fouthFormGroup = this._formBuilder.group({
+        fourthCtrl: ['', Validators.required]
+      });
+    //  this.findAll();
       // @ts-ignore
       this.findLivraisonByCommandeReference();
     }
-  public  findAll()  {
-    const resp = this.paimentService.findAll();
-    resp.subscribe(report => this.dataSource.data = report as Paiment[]);
-  }
+ // public  findAll()  {
+  //  console.log(this.facture.paiments);
+ //   const resp = this.paimentService.findAll();
+ //   this.dataSource.data = this.facture.paiments ;
+ // }
   public findLivraisonByCommandeReference(commande: Commande) {
     console.log(commande);
     const resp = this.factureService.findLivraisonByCommandeReference(commande);
@@ -381,4 +438,6 @@ get factures(): Array<Facture> {
   openDialog() {
    this.dailog.open(PaimentDailogComponent);
   }
-}
+validateSave() {
+  return this.factureService.validateSave();
+}}

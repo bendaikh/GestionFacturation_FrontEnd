@@ -13,9 +13,11 @@ export class Paiment {
   public reste: number;
   public commentaire: string;
   public comptabilise: boolean;
-  public paimentStatut: PaimentStatut;
+  public enregistre: boolean;
+  public paimentStatut: string;
   public facture: Facture;
   public commande: Commande;
   public client: Client;
   public paimentMethode: PaimentMethode;
+
 }

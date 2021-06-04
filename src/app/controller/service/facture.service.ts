@@ -11,6 +11,8 @@ import {DeviseSuccessComponent} from '../../view/devise/devise-success/devise-su
 import {MatDialog} from '@angular/material';
 import {Delivery} from '../model/delivery.model';
 import {CommandeType} from '../model/commande-type.model';
+import {Paiment} from '../model/paiment.model';
+import {PaimentService} from './paiment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +54,19 @@ export class FactureService {
  private _commandeType: CommandeType;
   // tslint:disable-next-line:variable-name
  private _clients: Array<Client>;
+  // tslint:disable-next-line:variable-name
+ private _paiment: Paiment;
+ private paimentService: PaimentService;
+  get paiment(): Paiment {
+    if (this._paiment == null) {
+      this._paiment = new Paiment();
+    }
+    return this._paiment;
+  }
+
+  set paiment(value: Paiment) {
+    this._paiment = value;
+  }
 
   get commandeType(): CommandeType {
     if (this._commandeType == null ) {
@@ -196,7 +211,13 @@ export class FactureService {
   set factureStatuts(value: Array<FactureStatut>) {
     this._factureStatuts = value;
   }
-
+  public addPaiment(paiment: Paiment, index: number) {
+    this.index = index;
+    if (this.paiment.id == null) {
+    this.facture.paiments.push(this.ClonePaiment(paiment)); } else {
+      this.facture.paiments[this.index] = this.ClonePaiment(paiment);
+    }
+  }
   public deleteByReference(index: number, facture: Facture) {
     console.log(facture);
     console.log(index);
@@ -318,6 +339,9 @@ export class FactureService {
  public findFacturefindByReference(facture: Facture) {
     return this.http.get<Facture>(this._urlBase + this._url + '/reference/' + facture.reference);
  }
+ validateSave(): boolean {
+    return this.facture.reference != null ;
+ }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();
@@ -341,7 +365,22 @@ export class FactureService {
   }
 
   constructor(private http: HttpClient , public dialog: MatDialog) { }
-
+  public ClonePaiment(paiment: Paiment) {
+    const  myClone = new Paiment();
+    myClone.id = paiment.id;
+    myClone.reference = paiment.reference;
+    myClone.datePaiment = paiment.datePaiment;
+    myClone.dateCreation = paiment.dateCreation;
+    myClone.montant = paiment.montant;
+    myClone.reste = paiment.reste;
+    myClone.comptabilise = paiment.comptabilise;
+    myClone.commentaire = paiment.commentaire;
+    myClone.paimentStatut = paiment.paimentStatut;
+    myClone.enregistre = paiment.enregistre;
+    myClone.paimentMethode = paiment.paimentMethode;
+    myClone.paimentStatut = paiment.paimentStatut;
+    return myClone;
+  }
   private CloneFacture(facture: Facture) {
     const myClone = new Facture();
     myClone.id = facture.id;
@@ -359,6 +398,8 @@ export class FactureService {
     myClone.cdtpaiment = facture.cdtpaiment;
     myClone.notes = facture.notes;
     myClone.total = facture.total;
+    myClone.reste = facture.reste;
+    myClone.en_litige = facture.en_litige;
     myClone.comptabilise = facture.comptabilise;
     myClone.commande = facture.commande;
     myClone.devis = facture.devis;
@@ -369,4 +410,15 @@ export class FactureService {
     return myClone;
   }
 
+  get index(): number {
+    return this._index;
+  }
+
+  set index(value: number) {
+    this._index = value;
+  }
+
+  updatePaiment(index: number, paiment: Paiment) {
+    this.paiment = paiment;
+  }
 }

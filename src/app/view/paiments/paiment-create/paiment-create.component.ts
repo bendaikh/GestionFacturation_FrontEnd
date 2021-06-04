@@ -6,24 +6,62 @@ import {FactureService} from '../../../controller/service/facture.service';
 import {Facture} from '../../../controller/model/facture.model';
 import {Commande} from '../../../controller/model/commande.model';
 import {Client} from '../../../controller/model/client.model';
+import {PaimentStatut} from '../../../controller/model/paiment-statut.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-paiment-create',
   templateUrl: './paiment-create.component.html',
-  styleUrls: ['./paiment-create.component.css']
+  styleUrls: ['./paiment-create.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+  }]
 })
 export class PaimentCreateComponent implements OnInit {
 
-  constructor(private paimentService: PaimentService, private factureService: FactureService) { }
+  // tslint:disable-next-line:variable-name
+  constructor(private _formBuilder: FormBuilder, private paimentService: PaimentService, private factureService: FactureService) { }
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   get paiment(): Paiment {
     return this.paimentService.paiment;
   }
+  get paimentStatut(): PaimentStatut {
+    return this.paimentService.paimentStatut;
+  }
+  indeterminate = false;
+  onchange() {
+
+  }
+  etatPaiment(paiment: Paiment) {
+    // tslint:disable-next-line:triple-equals
+   if (paiment.comptabilise == true ) {
+     return paiment.paimentStatut = 'Comptabilisé';
+     // tslint:disable-next-line:triple-equals
+   } else if (paiment.enregistre == true) {
+     return  paiment.paimentStatut = 'Enregisté';
+   } else {
+     // tslint:disable-next-line:triple-equals
+     return ' ';
+   }
+  }
+  get paimentStatuts(): Array<PaimentStatut> {
+    return this.paimentService.paimentStatuts;
+  }
   public save() {
+    console.log(this.paiment);
     this.paimentService.save();
   }
   ngOnInit() {
     this.paimentService.findAllPaimentMethode();
     this.factureService.findAllClient();
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
     this.findAllFacture();
   }
   public findFacturefindByReference(facture: Facture) {

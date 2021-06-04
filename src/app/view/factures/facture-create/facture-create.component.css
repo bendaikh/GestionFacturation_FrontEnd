@@ -1,6 +1,7 @@
 .first-card {
   background-color: royalblue;
   color: white;
+  text-align: center;
   padding: 10px;
   height: 50px;
 }
@@ -8,8 +9,7 @@ mat-grid-tile{
   width: 100px;
 }
 table {
-  width: 95%;
-  margin-left: 2%;
+  width: 100%;
 }
 
 th {
@@ -27,4 +27,71 @@ th.mat-sort-header-sorted {
   font-size: 14px;
   width: 100%;
 }
+.test{
+  width:100% ;
 
+}
+fieldset[_ngcontent-teq-c46] {
+  border-color: #3f51b58f;
+}
+
+fieldset {
+  display: block;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+  border-width: 2px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-style: groove;
+  border-top-style: groove;
+  border-right-style: groove;
+  border-bottom-style: groove;
+  border-left-style: groove;
+  border-color: threedface;
+  border-top-color: threedface;
+  border-right-color: threedface;
+  border-bottom-color: threedface;
+  border-left-color: threedface;
+  border-image: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+mat-stepper-horizontal {
+  font-family: Rubik,sans-serif;
+}
+div {
+  display: block;
+}
+.confirmation-step-container[_ngcontent-teq-c46] {
+  margin-top: 1.5rem;
+  min-width: 376px;
+}
+table[_ngcontent-teq-c46] tr[_ngcontent-teq-c46] td[_ngcontent-teq-c46] {
+  padding: 10px;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+table[_ngcontent-teq-c46] {
+  width: 100%;
+  border-spacing: 0;
+}
+table {
+  border-collapse: separate;
+  text-indent: initial;
+  border-spacing: 2px;
+}
+strong {
+  font-weight: bold;
+}

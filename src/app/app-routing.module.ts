@@ -10,6 +10,7 @@ import {PageNoteFoundedComponent} from './view/page-note-founded/page-note-found
 // tslint:disable-next-line:max-line-length
 export const components = [FactureCreateComponent, FactureListComponent, PaimentCreateComponent, PaimentListComponent];
 const routes: Routes = [
+  {path: '', component : components[0]},
   {path: 'facture-create', component : components[0]},
   {path: 'facture-list', component : components[1]},
   {path: 'paiment-create', component : components[2]},

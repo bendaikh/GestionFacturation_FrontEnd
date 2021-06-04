@@ -17,6 +17,7 @@ import {FactureDetailDailogComponent} from '../facture-detail-dailog/facture-det
 import {FactureUpdateDailogComponent} from '../facture-update-dailog/facture-update-dailog.component';
 import {Delivery} from '../../../controller/model/delivery.model';
 import {Commande} from '../../../controller/model/commande.model';
+import {HttpClient} from '@angular/common/http';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -29,7 +30,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   private deleteId: string;
   public fa: string;
   public i: number;
-  constructor(private factureService: FactureService, public dailog: MatDialog) { }
+  constructor(private factureService: FactureService, public dailog: MatDialog, private http: HttpClient) { }
   get facture(): Facture {
     return this.factureService.facture;
   }
@@ -59,12 +60,15 @@ export class FactureListComponent implements OnInit , AfterViewInit {
       this._dataSource.paginator.firstPage();
     }
   }
-
+ get commande(): Commande {
+    return this.factureService.commande;
+  }
 
   public update(index: number, facture: Facture) {
     this.factureService.update(index, facture);
   }
   ngOnInit() {
+    this.findLivraisonByCommandeReference(this.commande);
     this.findAll();
   }
   public  findAll()  {
@@ -79,16 +83,25 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   set dataSource(value: MatTableDataSource<Facture>) {
     this._dataSource = value;
   }
-
+  public findLivraisonByCommandeReference(commande: Commande) {
+    // @ts-ignore
+     this.http.get<Delivery>('http://localhost:8041/gestionFacturation/delivery/commande/reference/' +  commande.reference).subscribe(
+       data => {
+         this.fa = data.reference;
+       }
+     );
+  }
   generatePDF(element) {
     console.log(element);
+    this.findLivraisonByCommandeReference(element.commande);
+    console.log(this.fa);
     const doc = this.getDocument(element);
     pdfMake.createPdf(doc).open();
   }
 
   getDocument(element) {
     // @ts-ignore
-    console.log(element);
+    console.log(element.commande);
     return {
       content: [
         {
@@ -173,7 +186,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
                 },
               ],
               // tslint:disable-next-line:max-line-length
-              [element.reference, {text: 'Commande n° : ' + element.dateCreation + '                                      Date de la commande : ' + element.commande.date_Commande + '                             Type : ' + element.commande.commandeType.nom  + '                                                                Expédition : ' + element.commande.expedition.nom + '                                              Livraisons : ' } , element.prix, element.quantite, element.commande.montant],
+              [element.reference, {text: 'Commande n° : ' + element.dateCreation + '                                      Date de la commande : ' + element.commande.date_Commande + '                             Type : ' + element.commande.commandeType.nom  + '                                                                Expédition : ' + element.commande.expedition.nom + '                                              Livraisons : '  } , element.prix, element.quantite, element.commande.montant],
             ],
           },
         },

@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {PaimentMethode} from '../model/paiment-methode.model';
 import {Commande} from '../model/commande.model';
 import {Client} from '../model/client.model';
+import {PaimentStatut} from '../model/paiment-statut.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class PaimentService {
   // tslint:disable-next-line:variable-name
   private _paimentMethodes: Array<PaimentMethode>;
   // tslint:disable-next-line:variable-name
+  private _paimentStatut: PaimentStatut;
+  // tslint:disable-next-line:variable-name
+  private _paimentStatuts: Array<PaimentStatut>;
+  // tslint:disable-next-line:variable-name
   private _commande: Commande;
   // tslint:disable-next-line:variable-name
   private _client: Client;
@@ -42,6 +47,28 @@ export class PaimentService {
       this._commande = new Commande();
     }
     return this._commande;
+  }
+
+  get paimentStatut(): PaimentStatut {
+    if (this._paimentStatut == null) {
+      this._paimentStatut = new PaimentStatut();
+    }
+    return this._paimentStatut;
+  }
+
+  set paimentStatut(value: PaimentStatut) {
+    this._paimentStatut = value;
+  }
+
+  get paimentStatuts(): Array<PaimentStatut> {
+    if (this._paimentStatuts == null) {
+      this._paimentStatuts = new Array<PaimentStatut>();
+    }
+    return this._paimentStatuts;
+  }
+
+  set paimentStatuts(value: Array<PaimentStatut>) {
+    this._paimentStatuts = value;
   }
 
   set commande(value: Commande) {
@@ -95,7 +122,13 @@ export class PaimentService {
        }
      );
   }
-
+  public findAllPaimentStatut() {
+    this.http.get<Array<PaimentStatut>>(this._urlBase + '/getionfacturation/paiment_statut/').subscribe(
+      data => {
+        this.paimentStatuts = data;
+      }
+    );
+  }
   get paimentMethode(): PaimentMethode {
     if (this._paimentMethode == null) {
       this._paimentMethode  = new PaimentMethode();
@@ -150,6 +183,8 @@ export class PaimentService {
     myClone.reste = paiment.reste;
     myClone.comptabilise = paiment.comptabilise;
     myClone.commentaire = paiment.commentaire;
+    myClone.paimentStatut = paiment.paimentStatut;
+    myClone.enregistre = paiment.enregistre;
     myClone.paimentMethode = paiment.paimentMethode;
     myClone.paimentStatut = paiment.paimentStatut;
     return myClone;

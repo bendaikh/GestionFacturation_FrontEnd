@@ -38,7 +38,11 @@ import { PaimentUpdateDailogComponent } from './view/paiments/paiment-update-dai
 import { FactureUpdateDailogComponent } from './view/factures/facture-update-dailog/facture-update-dailog.component';
 import { PaimentDetailDailogComponent } from './view/paiments/paiment-detail-dailog/paiment-detail-dailog.component';
 import { FactureDetailDailogComponent } from './view/factures/facture-detail-dailog/facture-detail-dailog.component';
-
+import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +82,12 @@ import { FactureDetailDailogComponent } from './view/factures/facture-detail-dai
     ReactiveFormsModule,
     MatIconModule,
     MatSortModule,
-    MatPaginatorModule
+    MatRadioModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatSidenavModule,
+    MatListModule,
+    LayoutModule
 ],
   providers: [],
   bootstrap: [AppComponent]

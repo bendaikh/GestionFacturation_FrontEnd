@@ -4,6 +4,7 @@ import {Commande} from './commande.model';
 import {Currency} from './currency.model';
 import {Devis} from './devis.model';
 import {Client} from './client.model';
+import {Paiment} from './paiment.model';
 
 export class Facture {
   public id: number;
@@ -27,10 +28,14 @@ export class Facture {
   public total: number;
   public commentaire: string;
   public comptabilise: boolean;
+  // tslint:disable-next-line:variable-name
+  public en_litige: boolean;
   public factureEtat: FactureEtat;
-  public factureStatut: FactureStatut;
+  public factureStatut: string;
+  public reste: string;
   public commande: Commande;
   public currency: Currency;
   public devis: Devis;
   public client: Client;
+  public paiments = new Array<Paiment>();
 }

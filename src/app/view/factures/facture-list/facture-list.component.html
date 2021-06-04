@@ -1,10 +1,13 @@
 <mat-card class="first-card">
-  <mat-card-title  >Factures</mat-card-title>
+  <mat-card-title  >Gestion Des Factures</mat-card-title>
 </mat-card>
 
-<a mat-button mat-raised-button color="primary" style="float: right; margin: 60px" href="facture-create">Nouvelle Facture</a>
-<mat-form-field  style=" width: 95%; margin-left: 2%;">
-  <mat-label>Filter</mat-label>
+<a mat-button mat-raised-button color="primary" style="float: right; margin: 10px 40px 15px 0px" href="facture-create"> <span class="material-icons">
+add_circle
+</span> Nouvelle Facture</a>
+
+<mat-form-field  style=" width: 12%; margin-left: 2%;">
+  <mat-label>Recherche</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Fac" #input>
 </mat-form-field>
 
@@ -36,7 +39,7 @@
   </ng-container>
   <ng-container matColumnDef="factureStatut">
     <th mat-header-cell *matHeaderCellDef> Statut </th>
-    <td mat-cell *matCellDef="let element "> {{element.factureStatut.nom}} </td>
+    <td mat-cell *matCellDef="let element "> {{element.factureStatut}} </td>
   </ng-container>
   <ng-container matColumnDef="commande">
     <th mat-header-cell *matHeaderCellDef> Commande </th>
