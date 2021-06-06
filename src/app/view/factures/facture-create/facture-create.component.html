@@ -266,7 +266,7 @@ add_circle
             </tr>
             <tr _ngcontent-teq-c46>
               <td _ngcontent-teq-c46 colspan="2"> État</td>
-              <td _ngcontent-teq-c46>{{facture?.factureEtat}}</td>
+              <td _ngcontent-teq-c46>{{facture?.factureEtat?.nom}}</td>
             </tr>
             <tr _ngcontent-teq-c46>
               <td _ngcontent-teq-c46 colspan="2"> Devis </td>
@@ -284,7 +284,7 @@ add_circle
               <td _ngcontent-teq-c46 colspan="2"> Client</td>
               <td _ngcontent-teq-c46><strong _ngcontent-teq-c46>Raison Sociale </strong>
                 <br _ngcontent-teq-c46>
-                {{facture?.client?.reference}}</td>
+                {{facture?.commande?.client?.reference}}</td>
             </tr>
             <tr _ngcontent-teq-c46>
               <td _ngcontent-teq-c46 colspan="2"> Montant de la prestation</td>

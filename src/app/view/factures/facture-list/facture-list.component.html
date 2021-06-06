@@ -51,12 +51,9 @@ add_circle
         <button mat-icon-button color="warn" aria-label="iconButton"(click)="openDialog(i, element.reference)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
         </button>
-        <button mat-icon-button style="color: green" aria-label="iconButton"(click)="update(i, element)" >
+        <a mat-icon-button style="color: green" aria-label="iconButton"(click)="update(i, element)" routerLink="facture-create">
           <mat-icon aria-hidden="false" aria-label="Example home icon" >update</mat-icon>
-        </button>
-        <button mat-icon-button color="primary" aria-label="iconButton" (click)="openDailogInfo(element)">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" >info</mat-icon>
-        </button>
+        </a>
         <button mat-icon-button color="warn" aria-label="iconButton" (click)="generatePDF(element)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">print</mat-icon>
         </button>

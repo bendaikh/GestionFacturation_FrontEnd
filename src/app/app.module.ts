@@ -35,9 +35,7 @@ import { DeviseSuccessComponent } from './view/devise/devise-success/devise-succ
 import {DeviseCreateComponent} from './view/devise/devise-create/devise-create.component';
 import { PaimentDeleteDailogComponent } from './view/paiments/paiment-delete-dailog/paiment-delete-dailog.component';
 import { PaimentUpdateDailogComponent } from './view/paiments/paiment-update-dailog/paiment-update-dailog.component';
-import { FactureUpdateDailogComponent } from './view/factures/facture-update-dailog/facture-update-dailog.component';
 import { PaimentDetailDailogComponent } from './view/paiments/paiment-detail-dailog/paiment-detail-dailog.component';
-import { FactureDetailDailogComponent } from './view/factures/facture-detail-dailog/facture-detail-dailog.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -57,12 +55,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     DeviseSuccessComponent,
     PaimentDeleteDailogComponent,
     PaimentUpdateDailogComponent,
-    FactureUpdateDailogComponent,
-    PaimentDetailDailogComponent,
-    FactureDetailDailogComponent
+    PaimentDetailDailogComponent
   ],
   // tslint:disable-next-line:max-line-length
-  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, FactureUpdateDailogComponent, PaimentDetailDailogComponent, FactureDetailDailogComponent],
+  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

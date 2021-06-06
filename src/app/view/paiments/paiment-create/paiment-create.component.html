@@ -9,14 +9,14 @@
       <h3  >Informations de la créance</h3>
       <mat-form-field appearance="legacy" style=" width: 47%" >
         <mat-label>Chercher par facture : </mat-label>
-        <mat-select disableRipple  [(ngModel)]="paiment.facture" (click)="findFacturefindByReference(paiment?.facture)"  >
+        <mat-select disableRipple  [(ngModel)]="paiment.facture" (click)="findFacturefindByReference(paiment?.facture)" [ngModelOptions]="{standalone: true}" >
           <mat-option *ngFor="let f of factures" [value]="f"  >
             {{f.reference}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="legacy"  style="margin-left: 5%; width: 48%" >
         <mat-label >Choisir client :</mat-label>
-        <mat-select disableRipple [(ngModel)]="commande.client"  >
+        <mat-select disableRipple [(ngModel)]="commande.client"  [ngModelOptions]="{standalone: true}">
           <mat-option  *ngFor="let c of clients" [value]="c"   >{{c.nom}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -31,13 +31,13 @@
       <h3>Détails du paiement :</h3>
       <mat-form-field appearance="legacy"  class="test" style="margin-top: 10px">
         <mat-label >Date du paiment </mat-label>
-        <input matInput type="date" [(ngModel)]="paiment.datePaiment" required>
+        <input matInput type="date" [(ngModel)]="paiment.datePaiment" [ngModelOptions]="{standalone: true}" required>
       </mat-form-field>
 
       <div >
         <mat-form-field appearance="legacy"  class="test" style="margin-top: 10px" >
           <mat-label >Montant </mat-label>
-          <input matInput type="text" placeholder="000 000,00" [(ngModel)]="paiment.montant"required >
+          <input matInput type="text" placeholder="000 000,00" [(ngModel)]="paiment.montant" [ngModelOptions]="{standalone: true}" required >
           <span matPrefix>$&nbsp;</span>
           <span matSuffix>.00</span>
         </mat-form-field>
@@ -45,7 +45,7 @@
       <div >
         <mat-form-field appearance="legacy"  class="test" style="margin-top: 10px" >
           <mat-label>Mode de paiment</mat-label>
-          <mat-select disableRipple [(ngModel)]="paiment.paimentMethode" >
+          <mat-select disableRipple [(ngModel)]="paiment.paimentMethode" [ngModelOptions]="{standalone: true}" >
             <mat-option *ngFor="let p of paimentMethodes" [value]="p"  >
               {{p.nom}}</mat-option>
           </mat-select>
@@ -54,17 +54,15 @@
       <div >
         <mat-form-field appearance="legacy"  class="test" style="margin-top: 10px" >
           <mat-label>Libellé</mat-label>
-          <textarea matInput [(ngModel)]="paiment.commentaire"></textarea>
+          <textarea matInput [(ngModel)]="paiment.commentaire" [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
       </div>
       <h3>État du paiement :</h3>
-      <mat-checkbox labelPosition="before"   [value]="paiment.enregistre" [(ngModel)]="paiment.enregistre" >Enregistré :  </mat-checkbox>
-      <mat-checkbox labelPosition="before" style="margin-left: 20px" [value]="paiment.comptabilise" [(ngModel)]="paiment.comptabilise"  >Comptabilisé :  </mat-checkbox>
+      <mat-checkbox labelPosition="before"   [value]="paiment.enregistre" [(ngModel)]="paiment.enregistre" [ngModelOptions]="{standalone: true}">Enregistré :  </mat-checkbox>
+      <mat-checkbox labelPosition="before" style="margin-left: 20px" [value]="paiment.comptabilise" [(ngModel)]="paiment.comptabilise" [ngModelOptions]="{standalone: true}" >Comptabilisé :  </mat-checkbox>
 
-      <div style="text-align: center">
-        <button mat-raised-button color="warn" style="margin: 40px 40px 40px 70px">Quitter</button>
-        <button mat-raised-button style="margin: 40px 40px 40px 70px; background-color: green; color: white" (click)="save()">Enregistrer</button></div>
-        <button mat-raised-button matStepperNext style="float: right; margin-top: 10px" color="primary">Suivant</button>
+
+        <button mat-raised-button matStepperNext style="float: right; margin-top: 10px" color="primary" >Suivant</button>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" >
@@ -103,7 +101,7 @@
           </tr>
           <tr _ngcontent-teq-c46>
             <td _ngcontent-teq-c46 colspan="2"> Mode de paiment</td>
-            <td _ngcontent-teq-c46>{{paiment.paimentMethode?.nom}}</td>
+            <td _ngcontent-teq-c46>{{paiment?.paimentMethode?.nom}}</td>
           </tr>
           <tr _ngcontent-teq-c46>
             <td _ngcontent-teq-c46 colspan="2"> Libellé</td>
@@ -118,7 +116,7 @@
       </fieldset>
       </div>
       <div style="margin-top: 10px">
-        <button mat-raised-button matStepperNext style="float: right" color="primary" class="example-margin">Valider</button>
+        <button mat-raised-button matStepperNext style="float: right" color="primary" class="example-margin" (click)="save()">Valider</button>
         <button mat-raised-button  matStepperPrevious style="float: right; background-color: #FF0266; color: white" class="example-margin">Retour</button>
       </div>
     </mat-step>

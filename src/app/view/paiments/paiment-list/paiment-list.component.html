@@ -33,7 +33,7 @@
 
   <ng-container matColumnDef="facture">
     <th mat-header-cell *matHeaderCellDef> Facture </th>
-    <td mat-cell *matCellDef="let element "> <a href="#">Consulter</a> </td>
+    <td mat-cell *matCellDef="let element "> <a routerLink="facture-detail" (click)="findFactureByPaimentReference(element.reference)">Consulter</a> </td>
   </ng-container>
   <ng-container matColumnDef="factureStatut">
     <th mat-header-cell *matHeaderCellDef> FactureStatut </th>

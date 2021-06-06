@@ -6,15 +6,17 @@ import {PaimentCreateComponent} from './view/paiments/paiment-create/paiment-cre
 import {PaimentListComponent} from './view/paiments/paiment-list/paiment-list.component';
 import {PaimentDailogComponent} from './view/paiments/paiment-dailog/paiment-dailog.component';
 import {PageNoteFoundedComponent} from './view/page-note-founded/page-note-founded.component';
-
+import {FactureDetailComponent} from './view/factures/facture-detail/facture-detail.component';
 // tslint:disable-next-line:max-line-length
-export const components = [FactureCreateComponent, FactureListComponent, PaimentCreateComponent, PaimentListComponent];
+export const components = [FactureCreateComponent, FactureListComponent, PaimentCreateComponent, PaimentListComponent, FactureDetailComponent];
 const routes: Routes = [
   {path: '', component : components[0]},
   {path: 'facture-create', component : components[0]},
   {path: 'facture-list', component : components[1]},
   {path: 'paiment-create', component : components[2]},
   {path: 'paiment-list', component : components[3]},
+  {path: 'facture-list/facture-create', component : components[0]},
+  {path: 'paiment-list/facture-detail', component : components[4]},
   {path: '**', component : PageNoteFoundedComponent},
 ];
 @NgModule({

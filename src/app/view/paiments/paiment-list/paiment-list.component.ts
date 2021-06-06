@@ -17,7 +17,7 @@ import {MatDialog} from '@angular/material';
 
 export class PaimentListComponent implements OnInit , AfterViewInit {
 
-  constructor(private paimentService: PaimentService, public dailog: MatDialog ) { }
+  constructor(private paimentService: PaimentService, private factureService: FactureService, public dailog: MatDialog ) { }
   get paiment(): Paiment {
     return this.paimentService.paiment;
   }
@@ -55,6 +55,9 @@ export class PaimentListComponent implements OnInit , AfterViewInit {
     ngOnInit() {
     console.log(this.paiment);
     this.findAll();
+  }
+  public findFactureByPaimentReference(paiment: string) {
+    this.factureService.findFactureByPaimentReference(paiment);
   }
   public  findAll()  {
     const resp = this.paimentService.findAll();

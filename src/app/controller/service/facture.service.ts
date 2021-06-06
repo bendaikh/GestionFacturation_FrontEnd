@@ -56,6 +56,7 @@ export class FactureService {
  private _clients: Array<Client>;
   // tslint:disable-next-line:variable-name
  private _paiment: Paiment;
+ private _paiments: Array<Paiment>;
  private paimentService: PaimentService;
   get paiment(): Paiment {
     if (this._paiment == null) {
@@ -66,6 +67,17 @@ export class FactureService {
 
   set paiment(value: Paiment) {
     this._paiment = value;
+  }
+
+  get paiments(): Array<Paiment> {
+    if (this._paiments == null ) {
+      this._paiments = new Array<Paiment>();
+    }
+    return this._paiments;
+  }
+
+  set paiments(value: Array<Paiment>) {
+    this._paiments = value;
   }
 
   get commandeType(): CommandeType {
@@ -212,10 +224,10 @@ export class FactureService {
     this._factureStatuts = value;
   }
   public addPaiment(paiment: Paiment, index: number) {
-    this.index = index;
+    this._index = index;
     if (this.paiment.id == null) {
     this.facture.paiments.push(this.ClonePaiment(paiment)); } else {
-      this.facture.paiments[this.index] = this.ClonePaiment(paiment);
+      this.facture.paiments[this._index] = this.ClonePaiment(paiment);
     }
   }
   public deleteByReference(index: number, facture: Facture) {
@@ -230,9 +242,18 @@ export class FactureService {
       }
     );
   }
+  public findPaimentByFactureReference(facture: Facture) {
+    this.http.get<Array<Paiment>>(this._urlBase + '/getionfacturation/paiment' + '/facture/reference/' + facture.reference).subscribe(
+      data => {
+        this.facture.paiments = data ;
+      }
+    );
+  }
   public update(index: number, facture: Facture) {
     this.facture = this.CloneFacture(facture);
     this._index = index;
+    // @ts-ignore
+    this.facture.paiments = this.findPaimentByFactureReference(facture);
   }
   public save() {
     if (this.facture.id == null) {
@@ -256,10 +277,20 @@ export class FactureService {
       this.http.put(this._urlBase + this._url + '/' , this.facture).subscribe(
         data => {
           this.factures[this._index] = this.facture;
+         this.facture.paiments.push(this.ClonePaiment(this.paiment));
         }
       );
     }
    // this.facture = null;
+  }
+  public findFactureByPaimentReference(paiment: string) {
+    this.http.get<Facture>(this._urlBase + '/getionfacturation/paiment' + '/paiment/facture/reference/' + paiment).subscribe(
+      data => {
+        console.log(paiment);
+        this.facture = data;
+        console.log(data);
+      }
+    );
   }
   public findAll() {
    return  this.http.get(this._urlBase + this._url + '/');
@@ -342,6 +373,18 @@ export class FactureService {
  validateSave(): boolean {
     return this.facture.reference != null ;
  }
+ SaveTest() {
+    if (this.facture.id == null ) {
+      this.factures.push(this.CloneFacture(this.facture));
+    }else {
+      this.factures[this.index] = this.CloneFacture(this.facture);
+    }
+
+ }
+ updateTest(index: number, facture: Facture) {
+    this.facture = this.CloneFacture(facture);
+    this.index = index;
+ }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();
@@ -409,6 +452,7 @@ export class FactureService {
     myClone.commentaire = facture.commentaire;
     return myClone;
   }
+
 
   get index(): number {
     return this._index;
