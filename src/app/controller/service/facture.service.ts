@@ -223,12 +223,9 @@ export class FactureService {
   set factureStatuts(value: Array<FactureStatut>) {
     this._factureStatuts = value;
   }
-  public addPaiment(paiment: Paiment, index: number) {
-    this._index = index;
-    if (this.paiment.id == null) {
-    this.facture.paiments.push(this.ClonePaiment(paiment)); } else {
-      this.facture.paiments[this._index] = this.ClonePaiment(paiment);
-    }
+  public addPaiment(paiment: Paiment) {
+    console.log(paiment);
+    this.facture.paiments.push(this.ClonePaiment(paiment));
   }
   public deleteByReference(index: number, facture: Facture) {
     console.log(facture);
@@ -245,6 +242,7 @@ export class FactureService {
   public findPaimentByFactureReference(facture: Facture) {
     this.http.get<Array<Paiment>>(this._urlBase + '/getionfacturation/paiment' + '/facture/reference/' + facture.reference).subscribe(
       data => {
+        console.log(data);
         this.facture.paiments = data ;
       }
     );
@@ -291,6 +289,35 @@ export class FactureService {
         console.log(data);
       }
     );
+  }
+  private _i = 0;
+
+  get i(): number {
+    return this._i;
+  }
+
+  set i(value: number) {
+    this._i = value;
+  }
+
+  public findCommandeByFactureReference(facture: string, index: number) {
+    this.http.get<Commande>(this._urlBase + this._url + '/commande/reference/' + facture).subscribe(
+      data => {
+        this.commande = data;
+        // @ts-ignore
+        this.i = index;
+      }
+    );
+  }
+  public findAllDeliveries() {
+    this.http.get<Array<Delivery>>(this._urlBase + '/gestionFacturation/delivery/').subscribe(
+      data => {
+        console.log('Hadi livraison');
+        console.log(data);
+        this.commande.deliveries = data;
+      }
+    );
+
   }
   public findAll() {
    return  this.http.get(this._urlBase + this._url + '/');
@@ -373,18 +400,7 @@ export class FactureService {
  validateSave(): boolean {
     return this.facture.reference != null ;
  }
- SaveTest() {
-    if (this.facture.id == null ) {
-      this.factures.push(this.CloneFacture(this.facture));
-    }else {
-      this.factures[this.index] = this.CloneFacture(this.facture);
-    }
 
- }
- updateTest(index: number, facture: Facture) {
-    this.facture = this.CloneFacture(facture);
-    this.index = index;
- }
   get facture(): Facture {
     if (this._facture == null) {
       this._facture = new Facture();

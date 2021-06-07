@@ -67,14 +67,16 @@ export class FactureListComponent implements OnInit , AfterViewInit {
     this.factureService.update(index, facture);
   }
   ngOnInit() {
-    this.findLivraisonByCommandeReference(this.commande);
     this.findAll();
+    this.factureService.findAllDeliveries();
   }
   public  findAll()  {
     const resp = this.factureService.findAll();
     resp.subscribe(report => this._dataSource.data = report as Facture[]);
   }
-
+  public findCommandeByFactureReference(facture: string, index: number) {
+    this.factureService.findCommandeByFactureReference(facture, index);
+  }
   get dataSource(): MatTableDataSource<Facture> {
     return this._dataSource;
   }
@@ -82,25 +84,14 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   set dataSource(value: MatTableDataSource<Facture>) {
     this._dataSource = value;
   }
-  public findLivraisonByCommandeReference(commande: Commande) {
-    // @ts-ignore
-     this.http.get<Delivery>('http://localhost:8041/gestionFacturation/delivery/commande/reference/' +  commande.reference).subscribe(
-       data => {
-         this.fa = data.reference;
-       }
-     );
-  }
-  generatePDF(element) {
+  generatePDF(element, index: number) {
     console.log(element);
-    this.findLivraisonByCommandeReference(element.commande);
     console.log(this.fa);
-    const doc = this.getDocument(element);
+    const doc = this.getDocument(element, index);
     pdfMake.createPdf(doc).open();
   }
 
-  getDocument(element) {
-    // @ts-ignore
-    console.log(element.commande);
+  getDocument(element, index) {
     return {
       content: [
         {
@@ -156,6 +147,35 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         {
           text: '                                                ',
         },
+        {
+          text: 'Information Client :',
+          alignment: 'right',
+          margin: [0,0,49,0]
+        },
+        {
+          text: 'Nom Client : ' + element.commande.client.nom,
+          alignment: 'right',
+          margin: [0,10,1,0]
+        },
+        {
+          text: 'Adresse Client  : ' +element.commande.client.adresse1,
+          alignment: 'right',
+          margin: [0,10,33,0]
+        },
+        {
+          text: '                                                ',
+        },
+
+        {
+          text: 'Facture N° :' +element.reference,
+          alignment: 'left',
+        },
+        {
+          text: '                                                ',
+        },
+        {
+          text: '                                                ',
+        },
 
         {
           table: {
@@ -185,7 +205,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
                 },
               ],
               // tslint:disable-next-line:max-line-length
-              [element.reference, {text: 'Commande n° : ' + element.dateCreation + '                                      Date de la commande : ' + element.commande.date_Commande + '                             Type : ' + element.commande.commandeType.nom  + '                                                                Expédition : ' + element.commande.expedition.nom + '                                              Livraisons : '  } , element.prix, element.quantite, element.commande.montant],
+              [element.reference, {text: 'Commande n° : ' + element.dateCreation + '                                      Date de la commande : ' + element.commande.date_Commande + '                             Type : ' + element.commande.commandeType.nom  + '                                                                Expédition : ' + element.commande.expedition.nom + '                                              Livraisons : ' + this.commande.deliveries[index].reference } , element.prix, element.quantite, element.commande.montant],
             ],
           },
         },
@@ -210,8 +230,9 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         },
         {
           alignment: 'right',
+          margin: [400,10,0,0],
           table: {
-            aligment: 'right',
+            alignment: 'right',
             style: 'tb',
             headerRows: 1,
             widths: ['auto', 'auto'],
@@ -249,15 +270,21 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         {
           table: {
             widths: ['*'],
+            heights: 80,
             body: [
               [
                 {
                   text: '   ',
+
                 },
               ]
             ],
           }
-        }
+        },
+        {
+          text: 'Conditions de paiment: ' + element.cdtpaiment,
+          margin: [0, 30,0 ,0],
+        },
       ],
       styles: {
         header: {
@@ -278,7 +305,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
           italic: true
         },
         img: {
-          margin: [0, -190, 0, 10],
+          margin: [0, -230, 0, 10],
           alignment: 'right',
         },
         tableheader: {
@@ -307,14 +334,4 @@ export class FactureListComponent implements OnInit , AfterViewInit {
     );
   }
 
-  openDailogUpadte(index: number, facture: Facture) {
-    console.log('Hadi 9bel Matdkhel ' + facture);
-    // tslint:disable-next-line:triple-equals
-    // @ts-ignore
-    // tslint:disable-next-line:triple-equals
-    const fact = this.factureService.factures.find(c => c.reference == facture);
-    const dialogRef = this.dailog.open(FactureUpdateDailogComponent, {
-      data: facture
-    });
-  }
 }

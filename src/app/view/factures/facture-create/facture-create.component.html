@@ -182,11 +182,12 @@
       <button mat-raised-button color="primary" style="float: right; " (click)="openDialog()"><span class="material-icons">
 add_circle
 </span> Ajouter un paiment</button>
+        <div>
       <mat-form-field style=" width: 12%; margin-left: 2%;" class="hahah">
         <mat-label>Chercher</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Fac" #input>
       </mat-form-field>
-
+        </div>
       <div   class="mat-elevation-z8" >
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="datePaiment">

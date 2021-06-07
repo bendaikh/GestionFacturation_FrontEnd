@@ -63,6 +63,7 @@ export class PaimentListComponent implements OnInit , AfterViewInit {
     const resp = this.paimentService.findAll();
     resp.subscribe(report => this.dataSource.data = report as Paiment[]);
   }
+
   openDialog(index: number , paiment: Paiment) {
     console.log('Hadi 9bel Matdkhel ' + paiment);
     // @ts-ignore

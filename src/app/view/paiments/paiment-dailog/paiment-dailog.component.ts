@@ -25,8 +25,8 @@ export class PaimentDailogComponent implements OnInit {
   set paiment(value: Paiment) {
     this.paimentService.paiment = value;
   }
-  public addPaiment() {
-    this.factureService.addPaiment(this.paiment, this.index);
+  public addPaiment(paiment: Paiment) {
+    this.factureService.addPaiment(paiment);
     this.paiment = null;
   }
   get paimentMethodes(): Array<PaimentMethode> {

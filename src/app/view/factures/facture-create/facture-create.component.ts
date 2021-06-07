@@ -176,6 +176,7 @@ get factures(): Array<Facture> {
       this.factureService.findAllDevis();
       this.factureService.findAllCurrencies();
       this.paimentService.findAllPaimentMethode();
+      this.facture.paiments;
       this.firstFormGroup = this._formBuilder.group({
         firstCtrl: ['', Validators.required]
       });

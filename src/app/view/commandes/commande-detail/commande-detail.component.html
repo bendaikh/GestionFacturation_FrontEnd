@@ -1,0 +1,60 @@
+<mat-toolbar _ngcontent-obx-c27 class="mat-toolbar mat-toolbar-single-row" fxlayoutalign="center center" style="place-content: center; align-items: center; flex-direction: row; box-sizing: border-box; display: flex;">
+  <h2 _ngcontent-obx-c27>Gestion des paiments </h2> </mat-toolbar>
+<div _ngcontent-obx-c27 class="containt">
+  <mat-card _ngcontent-obx-c40 class="mat-card ng-star-inserted">
+    <mat-card-header _ngcontent-obx-c40 class="mat-card-header">
+      <div class="mat-card-header-text">
+        <mat-card-title _ngcontent-obx-c40 class="mat-card-title"> Détails Commande</mat-card-title>
+        <mat-card-subtitle _ngcontent-obx-c40 class="mat-card-subtitle"> Informations De la commande </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content _ngcontent-obx-c40 class="mat-card-content">
+      <div _ngcontent-obx-c40 class="mb-2" fxlayout="row wrap" fxlayoutalign="space-between" style="flex-flow: row wrap; box-sizing: border-box; display: flex; place-content: stretch space-between; align-items: stretch;">
+        <table _ngcontent-obx-c40 fxflex="45%"  fxflexalign="center"  style="align-self: center; flex: 1 1 45%; box-sizing: border-box; max-width: 45%;"  >
+          <tr _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Référence commande</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande.reference}} </td>
+          </tr>
+          <tr _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Raison sociale</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande?.client?.nom}} </td>
+          </tr>
+          <tr _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Expedition</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande?.expedition?.nom}} </td>
+          </tr>
+          <tr _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Type</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande?.commandeType?.nom}} </td>
+          </tr>
+        </table>
+        <mat-divider _ngcontent-obx-c40 class="mat-divider mat-divider-vertical" role="separator" aria-orientation="vertical"> </mat-divider>
+        <table _ngcontent-obx-c40 fxflex="45%"  fxflexalign="center" style="align-self: center; flex: 1 1 45%; box-sizing: border-box; max-width: 45%;">
+          <tr _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Date commande</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande.date_Commande}} </td>
+          </tr>
+          <tr _ngcontent-obx-c40 class="ng-star-inserted">
+            <td _ngcontent-obx-c40>Montant</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande.montant}} </td>
+          </tr>
+          <tr _ngcontent-obx-c40 class="ng-star-inserted">
+            <td _ngcontent-obx-c40>Commande statut</td>
+            <td _ngcontent-obx-c40 class="property-value">{{commande?.commandestatut?.nom}} </td>
+          </tr>
+          <tr  _ngcontent-obx-c40>
+            <td _ngcontent-obx-c40>Référence livraison</td>
+            <td _ngcontent-obx-c40 class="property-value">{{ commande.deliveries[this.i].reference}} </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions _ngcontent-obx-c40 class="card-action mat-card-actions" fxlayout="row-reverse" fxlayoutgap="10px" style="flex-direction: row-reverse; box-sizing: border-box; display: flex;">
+      <a mat-button _ngcontent-obx-c40 color="warn" mat-flat-button class="mat-flat-button mat-warn" style="margin-left: 10px;" href="facture-list" >
+        <span class="mat-button-wrapper"> Liste des Factures </span>
+        <div class="mat-button-ripple mat-ripple" matripple ></div>
+        <div class="mat-button-focus-overlay" > </div>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -13,16 +13,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
-// import { PaimentDailogComponent } from './paiments/paiment-dailog/paiment-dailog.component';
 import { MenuComponent } from './view/menu/menu.component';
 import { PageNoteFoundedComponent } from './view/page-note-founded/page-note-founded.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {FacturesComponent} from './view/factures/factures.component';
-import {FactureCreateComponent} from './view/factures/facture-create/facture-create.component';
-import {FactureListComponent} from './view/factures/facture-list/facture-list.component';
-import {PaimentsComponent} from './view/paiments/paiments.component';
-import {PaimentCreateComponent} from './view/paiments/paiment-create/paiment-create.component';
-import {PaimentListComponent} from './view/paiments/paiment-list/paiment-list.component';
 import {PaimentDailogComponent} from './view/paiments/paiment-dailog/paiment-dailog.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
@@ -41,6 +34,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { LayoutModule } from '@angular/cdk/layout';
+import { CommandeDetailComponent } from './view/commandes/commande-detail/commande-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +49,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     DeviseSuccessComponent,
     PaimentDeleteDailogComponent,
     PaimentUpdateDailogComponent,
-    PaimentDetailDailogComponent
+    PaimentDetailDailogComponent,
+    CommandeDetailComponent
   ],
   // tslint:disable-next-line:max-line-length
   entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent],

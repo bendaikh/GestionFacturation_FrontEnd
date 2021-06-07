@@ -43,7 +43,7 @@ add_circle
   </ng-container>
   <ng-container matColumnDef="commande">
     <th mat-header-cell *matHeaderCellDef> Commande </th>
-    <td mat-cell *matCellDef="let element "> {{element.commande.reference}} </td>
+    <td mat-cell *matCellDef="let element; index as i "><a routerLink="commande-detail" (click)="findCommandeByFactureReference(element.reference, i)">Consulter</a> </td>
   </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -54,7 +54,7 @@ add_circle
         <a mat-icon-button style="color: green" aria-label="iconButton"(click)="update(i, element)" routerLink="facture-create">
           <mat-icon aria-hidden="false" aria-label="Example home icon" >update</mat-icon>
         </a>
-        <button mat-icon-button color="warn" aria-label="iconButton" (click)="generatePDF(element)">
+        <button mat-icon-button color="warn" aria-label="iconButton" (click)="generatePDF(element , i)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">print</mat-icon>
         </button>
       </td>
