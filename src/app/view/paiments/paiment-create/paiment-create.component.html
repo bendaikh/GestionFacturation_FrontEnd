@@ -22,7 +22,7 @@
       </mat-form-field>
       <h3>Informations de facturation</h3>
       <mat-form-field appearance="legacy"  class="test" >
-        <mat-label >Référence Facture :</mat-label>
+        <mat-label >Référence Paiment :</mat-label>
         <input matInput type="text"  formControlName="firstCtrl" [(ngModel)]="paiment.reference" >
       </mat-form-field>
       <mat-form-field  appearance="legacy"  class="test">
@@ -81,7 +81,7 @@
             <td _ngcontent-teq-c46 colspan="2"> Client </td>
             <td _ngcontent-teq-c46><strong _ngcontent-teq-c46>Raison Social</strong>
               <br _ngcontent-teq-c46>
-              {{paiment.facture?.commande?.client?.reference}}</td>
+              {{commande?.client?.nom}}</td>
           </tr>
           <tr _ngcontent-teq-c46>
             <td _ngcontent-teq-c46 colspan="2"> Réference </td>

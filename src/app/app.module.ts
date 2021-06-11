@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import {AppRoutingModule, components} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule, MatTabsModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
@@ -35,6 +35,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CommandeDetailComponent } from './view/commandes/commande-detail/commande-detail.component';
+import { CommandeCreateComponent } from './view/commande/commande-create/commande-create.component';
+import { CommandeSaveSuccessComponent } from './view/commande/commande-save-success/commande-save-success.component';
+import { SuccessComponent } from './view/success/success.component';
+import {CommandeComponent} from './view/commande/commande.component';
+import { DevisComponent } from './view/devis/devis.component';
+import { QuitterDevisComponent } from './view/quitter-devis/quitter-devis.component';
+import { ClientComponent } from './view/client/client.component';
+import {ClientCreatComponent} from './view/client/client-creat/client-creat.component';
+import {FindClientComponent} from './view/client/find-client/find-client.component';
+import { HomeComponent } from './view/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,10 +60,20 @@ import { CommandeDetailComponent } from './view/commandes/commande-detail/comman
     PaimentDeleteDailogComponent,
     PaimentUpdateDailogComponent,
     PaimentDetailDailogComponent,
-    CommandeDetailComponent
+    CommandeDetailComponent,
+    CommandeCreateComponent,
+    CommandeSaveSuccessComponent,
+    SuccessComponent,
+    CommandeComponent,
+    DevisComponent,
+    ClientCreatComponent,
+    FindClientComponent,
+    QuitterDevisComponent,
+    ClientComponent,
+    HomeComponent
   ],
   // tslint:disable-next-line:max-line-length
-  entryComponents: [PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent],
+  entryComponents: [QuitterDevisComponent,SuccessComponent,PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent, ClientCreatComponent, FindClientComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -78,8 +98,9 @@ import { CommandeDetailComponent } from './view/commandes/commande-detail/comman
     MatStepperModule,
     MatSidenavModule,
     MatListModule,
-    LayoutModule
-],
+    LayoutModule,
+    MatTabsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

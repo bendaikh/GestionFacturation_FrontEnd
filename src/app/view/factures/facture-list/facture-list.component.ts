@@ -157,11 +157,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
           alignment: 'right',
           margin: [0,10,1,0]
         },
-        {
-          text: 'Adresse Client  : ' +element.commande.client.adresse1,
-          alignment: 'right',
-          margin: [0,10,33,0]
-        },
+
         {
           text: '                                                ',
         },
@@ -270,7 +266,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         {
           table: {
             widths: ['*'],
-            heights: 80,
+            heights: 60,
             body: [
               [
                 {
@@ -283,7 +279,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
         },
         {
           text: 'Conditions de paiment: ' + element.cdtpaiment,
-          margin: [0, 30,0 ,0],
+          margin: [0, 20,0 ,0],
         },
       ],
       styles: {

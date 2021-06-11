@@ -21,7 +21,7 @@ export class FactureService {
 // tslint:disable-next-line:variable-name
   private _urlBase = 'http://localhost:8041';
   // tslint:disable-next-line:variable-name
-  private  _url = '/getionfacturation/facture';
+  private  _url = '/gestionFacturation/facture';
   // tslint:disable-next-line:variable-name
   private _facture: Facture;
   // tslint:disable-next-line:variable-name
@@ -240,7 +240,7 @@ export class FactureService {
     );
   }
   public findPaimentByFactureReference(facture: Facture) {
-    this.http.get<Array<Paiment>>(this._urlBase + '/getionfacturation/paiment' + '/facture/reference/' + facture.reference).subscribe(
+    this.http.get<Array<Paiment>>(this._urlBase + '/gestionFacturation/paiment' + '/facture/reference/' + facture.reference).subscribe(
       data => {
         console.log(data);
         this.facture.paiments = data ;
@@ -282,7 +282,7 @@ export class FactureService {
    // this.facture = null;
   }
   public findFactureByPaimentReference(paiment: string) {
-    this.http.get<Facture>(this._urlBase + '/getionfacturation/paiment' + '/paiment/facture/reference/' + paiment).subscribe(
+    this.http.get<Facture>(this._urlBase + '/gestionFacturation/paiment' + '/paiment/facture/reference/' + paiment).subscribe(
       data => {
         console.log(paiment);
         this.facture = data;
@@ -323,14 +323,14 @@ export class FactureService {
    return  this.http.get(this._urlBase + this._url + '/');
   }
   public findAllFactureEtat() {
-   this.http.get<Array<FactureEtat>>('http://localhost:8041/getionfacturation/facture_etat/').subscribe(
+   this.http.get<Array<FactureEtat>>('http://localhost:8041/gestionFacturation/facture_etat/').subscribe(
      data => {
        this.factureEtats = data;
      }
    );
   }
   public findAllFactureStatut() {
-    return this.http.get<Array<FactureStatut>>('http://localhost:8041/getionfacturation/facture_statut/').subscribe(
+    return this.http.get<Array<FactureStatut>>('http://localhost:8041/gestionFacturation/facture_statut/').subscribe(
       data => {
         this.factureStatuts = data;
       }

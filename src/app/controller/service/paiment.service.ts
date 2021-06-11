@@ -13,7 +13,7 @@ export class PaimentService {
 // tslint:disable-next-line:variable-name
   private _urlBase = 'http://localhost:8041';
   // tslint:disable-next-line:variable-name
-  private  _url = '/getionfacturation/paiment';
+  private  _url = '/gestionFacturation/paiment';
   // tslint:disable-next-line:variable-name
   private _paiment: Paiment;
   // tslint:disable-next-line:variable-name
@@ -116,14 +116,14 @@ export class PaimentService {
    return this.http.get(this._urlBase + this._url + '/') ;
   }
   public findAllPaimentMethode() {
-     this.http.get<Array<PaimentMethode>>(this._urlBase + '/getionfacturation/paiment_methode/').subscribe(
+     this.http.get<Array<PaimentMethode>>(this._urlBase + '/gestionFacturation/paiment_methode/').subscribe(
        data => {
          this.paimentMethodes = data;
        }
      );
   }
   public findAllPaimentStatut() {
-    this.http.get<Array<PaimentStatut>>(this._urlBase + '/getionfacturation/paiment_statut/').subscribe(
+    this.http.get<Array<PaimentStatut>>(this._urlBase + '/gestionFacturation/paiment_statut/').subscribe(
       data => {
         this.paimentStatuts = data;
       }

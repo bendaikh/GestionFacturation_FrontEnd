@@ -1,7 +1,29 @@
-<mat-toolbar color="primary">
- <span>FleetT&M</span>
-  <a mat-button routerLink="facture-list">Factures</a>
-  <a mat-button routerLink="facture-create">Crée une facture</a>
-  <a mat-button routerLink="paiment-list">Paiments</a>
-  <a mat-button routerLink="paiment-create">Crée un paiment</a>
+<mat-toolbar color="primary" class="example-header">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-grid-list cols="7">
+      <a mat-button style="margin-right: 4.5em" routerLink="/home"><b>FleetT&M</b></a>
+      <a mat-button routerLink="facture-list">Factures</a>
+      <a mat-button routerLink="facture-create">Crée une facture</a>
+      <a mat-button routerLink="paiment-list">Paiments</a>
+      <a mat-button routerLink="paiment-create">Crée un paiment</a>
+      <a mat-button (click)="getAll()" routerLink="/commande">Commade</a>
+      <a mat-button routerLink="/devis">devis</a>
+    </mat-grid-list>
+  </mat-toolbar-row>
 </mat-toolbar>
+<ng-container>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav justify-content-center text-center"
+                 [fixedInViewport]="false">
+    </mat-sidenav>
+    <mat-sidenav-content class="flex-container">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <mat-toolbar class="example-footer" id="font" style="font-size: 40px">
+    FLEET&M
+  </mat-toolbar>
+</ng-container>
