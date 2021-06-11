@@ -1,0 +1,58 @@
+<mat-dialog-content class="mat-typography">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Reference:</mat-label>
+      <input [(ngModel)]="client.reference" type="text" matInput placeholder="entrer le reference du client" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>nom:</mat-label>
+      <input [(ngModel)]="client.nom" type="text" matInput placeholder="entrer le nom" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>email:</mat-label>
+      <input [(ngModel)]="client.email" type="email" matInput placeholder="entrer l'email" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>legal form:</mat-label>
+      <input [(ngModel)]="client.legal_form" type="text" matInput placeholder="legal form ici ..." [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Adress 1:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.adresse1" type="text" matInput placeholder="entrer adresse 1">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Adress 2:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.adresse2" type="text" matInput placeholder="entrer adresse 2">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Zip Code:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.zip_code" type="text" matInput placeholder="entrer le zip code">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Ville:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.ville" type="text" matInput placeholder="entrer la ville">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Pays:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.pays" type="text" matInput placeholder="entrer le pays">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Number 1:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.number1" type="number" matInput placeholder="entrer le pays">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Number 2:</mat-label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="client.number2" type="number" matInput placeholder="entrer le pays">
+    </mat-form-field>
+
+    <div class="example-button-row">
+
+      <mat-dialog-actions>
+        <button id="save" (click)="saveClient()" mat-raised-button color="primary" [disabled]="click">save</button>
+        <button class="left" mat-raised-button mat-dialog-close color="accent" [disabled]="click">cancel</button>
+        <button class="left" mat-raised-button mat-dialog-close color="warn" [disabled]="click == false">finish</button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+
+</mat-dialog-content>

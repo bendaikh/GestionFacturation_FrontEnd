@@ -1,0 +1,166 @@
+<mat-card class="first-card">
+  <mat-card-title  >Gestion Des Commandes</mat-card-title>
+</mat-card >
+
+<mat-card>
+  <mat-card class="cc">
+    <mat-icon>edit</mat-icon>
+    <h4>commande details</h4>
+    <button mat-raised-button color="warn" class="buttonFor" routerLink="/facture-create">Creer une Facture</button>
+    <mat-card style="margin-top: 30px;" class="co">
+      <table class="example-full-width" cellspacing="50"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Reference:</mat-label>
+          <input matInput [(ngModel)]="command.reference">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Date de Commande:</mat-label>
+          <input matInput type="date" [(ngModel)]="command.date_Commande">
+        </mat-form-field></td>
+      </tr>
+        <tr>
+          <td><b>le type de commande:</b></td>
+          <td>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="command.commandeType">
+              <mat-radio-button class="example-radio-button" [value]="commandetype" *ngFor="let commandetype of commandeType">{{commandetype.nom}}</mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </tr>
+        <tr>
+          <td><b>status de commande:</b></td>
+          <td>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="command.commandestatut">
+              <mat-radio-button class="example-radio-button" [value]="commandstatus" *ngFor="let commandstatus of commandeStatus">
+                {{commandstatus.nom}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </tr>
+      </table>
+
+      <div class="leftNow">
+        <h4>choisir le client:</h4>
+        <mat-form-field appearance="fill" class="left" style="width: 300px">
+          <mat-label>listes des clients</mat-label>
+          <mat-select [(ngModel)]="command.client" name="client">
+            <mat-option *ngFor="let client of clients" [value]="client">
+              {{client.nom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <h4>choisir devise:</h4>
+        <mat-form-field appearance="fill" class="left" style="width: 300px">
+          <mat-label>listes des devises</mat-label>
+          <mat-select [(ngModel)]="command.currency" name="devise">
+            <mat-option *ngFor="let devise of devises" [value]="devise">{{devise.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <h4>Expedition:</h4>
+        <mat-form-field appearance="fill" class="left" style="width: 300px">
+          <mat-label>listes des expeditions</mat-label>
+          <mat-select [(ngModel)]="command.expedition" name="expedition">
+            <mat-option *ngFor="let expedition of expeditions" [value]="expedition">{{expedition.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <table class="example-full-width" cellspacing="50"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Montant:</mat-label>
+          <input matInput placeholder="100,000$" [(ngModel)]="command.montant">
+        </mat-form-field></td>
+      </tr>
+      </table>
+      <button mat-raised-button class="buttonForLess" color="accent" (click)="addLivraison()"> <b>+</b> Ajouter livraison</button>
+      <table class="example-full-width" cellspacing="50">
+        <p><b>les information de livraison:</b></p>
+
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <mat-label>Reference:</mat-label>
+            <input disabled matInput [(ngModel)]="deliveries.reference">
+          </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+            <mat-label>creation date:</mat-label>
+            <input matInput type="date" [(ngModel)]="deliveries.creation_date">
+          </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+            <mat-label>cmr Commodity:</mat-label>
+            <input matInput type="text" placeholder="entrer la cmr commodity" [(ngModel)]="deliveries.cmr_Commodity">
+          </mat-form-field></td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>cmr Shipper:</mat-label>
+              <input matInput type="text" [(ngModel)]="deliveries.cmr_Shipper">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>delivery date:</mat-label>
+              <input matInput type="date" [(ngModel)]="deliveries.delivery_date">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>cmr Number:</mat-label>
+              <input matInput type="number" [(ngModel)]="deliveries.cmr_Number">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>cmr Shipping Adress:</mat-label>
+              <input matInput type="text" [(ngModel)]="deliveries.cmr_Shipping_Adress">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>cmr Recipient:</mat-label>
+              <input matInput type="text" [(ngModel)]="deliveries.cmr_Recipient">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>cmr Recipient Address:</mat-label>
+              <input matInput type="text" [(ngModel)]="deliveries.cmr_Recipient_Address">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="example-full-width" cellspacing="50" id="tableForm">
+        <tr>
+          <th>id</th>
+          <th>reference</th>
+          <th>delivery date</th>
+          <th>cmr recipient address</th>
+          <th>creation date</th>
+          <th>cmr commodity</th>
+          <th>cmr shipper</th>
+          <th>cmr number</th>
+          <th>cmr shipping address</th>
+          <th colspan="2">Action</th>
+        </tr>
+        <tr *ngFor="let d of deliveriesOther; index as i">
+          <td>{{d.id}}</td>
+          <td>{{d.reference}}</td>
+          <td>{{d.delivery_date}}</td>
+          <td>{{d.cmr_Recipient_Address}}</td>
+          <td>{{d.creation_date}}</td>
+          <td>{{d.cmr_Commodity}}</td>
+          <td>{{d.cmr_Shipper}}</td>
+          <td>{{d.cmr_Number}}</td>
+          <td>{{d.cmr_Shipping_Adress}}</td>
+          <td><span (click)="delete(i)"><button><mat-icon aria-hidden="false" aria-label="Example home icon">delete sweep</mat-icon></button></span>
+            <span style="margin-left: 4px"><button><mat-icon (click)="update(i,d)" aria-hidden="false" aria-label="Example home icon">edit</mat-icon></button></span></td>
+        </tr>
+      </table>
+
+      <div style="margin-left: 50px; margin-top: 30px">
+        <button mat-raised-button color="warn" (click)="saveCommande()" [disabled]="!(command.reference&&command.date_Commande&&command.commandeType&&command.commandestatut&&command.client&&command.currency&&command.expedition&&command.montant)">save</button>
+        <button mat-raised-button color="accent" style="margin-left: 10px">cancel</button>
+      </div>
+    </mat-card>
+  </mat-card>
+</mat-card>

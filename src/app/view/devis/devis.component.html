@@ -1,0 +1,216 @@
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs" #tabGroup>
+  <mat-tab label="Informations clients et Informations Devis">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <div>
+          <div>
+            <h1><b>Informations Clients:</b></h1>
+            <h2><i>Client/Relation:</i></h2>
+          </div>
+
+          <div class="example-button-row">
+            <button (click)="creatClient()" mat-raised-button color="primary">creer client</button>
+            <button (click)="findClient()" mat-raised-button class="left" color="accent">choisir client</button>
+
+          </div>
+        </div>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div>
+          <div>
+            <h1><b>Informations Devis</b></h1>
+          </div>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Date de Creation</mat-label>
+              <input type="date" matInput placeholder="JJ/MM/AAAA"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date d'echeance</mat-label>
+              <input type="date" matInput placeholder="JJ/MM/AAAA"/>
+            </mat-form-field>
+            <mat-form-field apearance="fill" (click)="getQuotationStaut()" class="example-full-width">
+              <mat-label>quotation Statut</mat-label>
+              <mat-select [(ngModel)]="selectedValue3" name="quotationStatut">
+                <mat-option *ngFor="let quotationStatut of dataSource3" [value]="quotationStatut.code">
+                  {{quotationStatut.nom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-raised-button (click)="tabGroup.selectedIndex=1" color="warn">Next >></button>
+            </div>
+          </form>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div style="margin-top: 12em;margin-left: 35em">
+      <button mat-raised-button (click)="openDialog()" color="primary" style="width:150px; margin-right:20px">Quitter</button>
+      <button mat-raised-button color="accent" style="width:150px; margin-right:20px">Sauvegarder</button>
+      <button mat-raised-button color="warn" style="width:150px; margin-right:20px">Envoyer</button>
+      <button mat-raised-button color="accent" style="width:160px;">Valider la commande</button>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="Informations Commandes et Informations Livraisons">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <div>
+          <div>
+            <h1><b>Informations Commandes:</b></h1>
+          </div>
+
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Reference:</mat-label>
+              <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="commande.reference" matInput placeholder="a venir ou reference de la commande">
+            </mat-form-field>
+            <mat-form-field apearance="fill" class="example-full-width">
+              <mat-label>commandeType</mat-label>
+              <mat-select [(ngModel)]="commande.commandeType" name="commandeType">
+                <mat-option *ngFor="let commandeType of dataSource" [value]="commandeType">
+                  {{commandeType.nom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div></div>
+            <mat-form-field apearance="fill" class="example-full-width">
+              <mat-label>commandeStatut</mat-label>
+              <mat-select [(ngModel)]="commande.commandestatut" name="commandeStatut">
+                <mat-option *ngFor="let commandeStatut of dataSource2" [value]="commandeStatut">
+                  {{commandeStatut.nom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="devisCommande">Look For ...</button>
+          </form>
+
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div>
+          <div>
+            <h1><b>Informations Livraisons:</b></h1>
+          </div>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Marchandise:</mat-label>
+              <input type="text" matInput placeholder="Argumes/Legumes/..."/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Depart:</mat-label>
+              <input type="text" matInput placeholder="Adress de depart"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Marchandise:</mat-label>
+              <input type="text" matInput placeholder="Adress d'arrive"/>
+            </mat-form-field>
+          </form>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div style="margin-left: 42em">
+      <button mat-raised-button (click)="tabGroup.selectedIndex=0" color="warn"><< Previous</button>
+      <span>
+        <button mat-raised-button style="margin-left: 10px" (click)="tabGroup.selectedIndex=2" color="accent">Next >></button></span>
+    </div>
+    <div style="margin-top: 10em;margin-left: 35em">
+      <button mat-raised-button (click)="openDialog()" color="primary" style="width:150px; margin-right:20px">Quitter</button>
+      <button mat-raised-button color="accent" style="width:150px; margin-right:20px">Sauvegarder</button>
+      <button mat-raised-button color="warn" style="width:150px; margin-right:20px">Envoyer</button>
+      <button mat-raised-button color="accent" style="width:160px;">Valider la commande</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Informations Tarifaires">
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <div>
+
+          <h1><b>Informations Tarifaires:</b></h1>
+
+
+          <form class="example-form">
+            <ng-template matStepLabel>First Step:</ng-template>
+            <mat-form-field class="example-full-width">
+              <mat-label>Prix</mat-label>
+              <input type="number" matInput placeholder="000 000,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Quantite</mat-label>
+              <input type="number" matInput placeholder="00,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Montant de la prestation:</mat-label>
+              <input type="number" matInput placeholder="000 000,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Remise en valeur:</mat-label>
+              <input type="number" matInput placeholder="000 000,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Remise en %:</mat-label>
+              <input type="number" matInput placeholder="000 000,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Condition de paiement:</mat-label>
+              <input type="number" matInput placeholder="000 000,00"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Note:</mat-label>
+              <input type="text" matInput/>
+            </mat-form-field>
+
+          </form>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div>
+          <form>
+            <div>
+              <label>Devise:</label>
+            </div>
+            <p></p>
+            <div>
+              <button (click)="creatDevise()" mat-raised-button color="accent">Creer Devise</button>
+              <button (click)="findDevise()" mat-raised-button style="margin-left: 4px" color="warn">Choisir Devise</button>
+            </div>
+
+            <p></p>
+
+            <div [formGroup]="myGroup">
+
+              <mat-label>TVA:</mat-label>
+
+              <p></p>
+              <mat-checkbox class="example-margin" [(ngModel)]="disabled" formControlName="firstName">Oui</mat-checkbox>
+              <mat-checkbox class="example-margin" [(ngModel)]="indeterminate" formControlName="firstName" [disabled]="disabled">Non</mat-checkbox>
+            </div>
+            <p></p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Taux:</mat-label>
+              <input [disabled]="!disabled" type="number" matInput placeholder="00,00%"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Total a payer:</mat-label>
+              <input type="number" matInput placeholder="000 000,00 MAD ou €"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Commentaire:</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </form>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div style="margin-bottom: 10px; margin-left: 20em">
+      <button mat-raised-button color="accent" (click)="tabGroup.selectedIndex=1" style="width:150px; margin-right: 20px"><< previous</button>
+      <button mat-raised-button (click)="openDialog()" color="primary" style="width:150px; margin-right:20px">Quitter</button>
+      <button mat-raised-button color="accent" style="width:150px; margin-right:20px">Sauvegarder</button>
+      <button mat-raised-button color="warn" style="width:150px; margin-right:20px">Envoyer</button>
+      <button mat-raised-button color="accent" style="width:160px;">Valider la commande</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

@@ -1,0 +1,35 @@
+.mat-color{
+  background-color: dodgerblue;
+  color: aliceblue;
+}
+.left{
+  margin-left:6px;
+}
+.example-button-row{
+  width: 490px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
+
+.another{
+  display: inline-flex;
+}
+.example-margin {
+  margin: 0 10px;
+}
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+html{
+  zoom: 90%;
+}
+.example-stretched-tabs {
+  margin-left: 10px;
+  max-width: 94em;
+}

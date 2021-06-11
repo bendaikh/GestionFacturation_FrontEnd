@@ -1,0 +1,83 @@
+.mat-color{
+  background-color: #039be5;
+  color: aliceblue;
+}
+.left{
+  margin-left:6px;
+}
+.example-button-row{
+  width: 490px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
+
+.another{
+  display: inline-flex;
+}
+.example-margin {
+  margin: 0 10px;
+}
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.cc{
+  background-color: white;
+}
+h4{
+  display: inline;
+  margin-left: 10px;
+}
+.buttonFor{
+
+
+  margin-left: 1290px;
+
+
+}
+
+.co {
+  background-color: ghostwhite;
+}
+.this{
+  margin-left: 10px;
+}
+.leftNow{
+  margin-left: 43px;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+.buttonForLess{
+  margin-left: 1200px;
+}
+#tableForm {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tableForm td,th {
+  border: 1px solid #aaaa;
+  text-align: left;
+  padding: 8px;
+}
+.center{
+  height: 100px;
+  background-color: #039be5;
+  text-align: center;
+}
+.first-card{
+  background-color: #039be5;
+  color: white;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+}
