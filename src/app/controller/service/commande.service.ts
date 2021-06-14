@@ -51,7 +51,6 @@ export class CommandeService {
   }
 
   getCommande() {
-    // tslint:disable-next-line:max-line-length
     this.http.get<Commande>('http://localhost:8041/gestionFacturation/commande/reference/' + this.commande.reference).subscribe(
       data => {
         console.log('here is the result' + data);

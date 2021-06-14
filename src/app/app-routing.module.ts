@@ -14,7 +14,7 @@ import {HomeComponent} from './view/home/home.component';
 // tslint:disable-next-line:max-line-length
 export const components = [FactureCreateComponent, FactureListComponent, PaimentCreateComponent, PaimentListComponent, FactureDetailComponent, CommandeDetailComponent];
 const routes: Routes = [
-  {path: '', component : components[0]},
+  {path: '', component : HomeComponent},
   {path: 'facture-create', component : components[0]},
   {path: 'facture-list', component : components[1]},
   {path: 'paiment-create', component : components[2]},

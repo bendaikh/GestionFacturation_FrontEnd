@@ -227,7 +227,7 @@ export class FactureService {
     console.log(paiment);
     this.facture.paiments.push(this.ClonePaiment(paiment));
   }
-  public deleteByReference(index: number, facture: Facture) {
+  public deleteByReference(index: number, facture: String) {
     console.log(facture);
     console.log(index);
     const link = this._urlBase + this._url + '/reference/' + facture;

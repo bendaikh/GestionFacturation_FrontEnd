@@ -1,10 +1,8 @@
-
-  <div mat-dialog-content >
+<div mat-dialog-content >
     <mat-icon style="float: right" (click)="onClickNo()">close</mat-icon>
     {{message}}
   </div>
   <div mat-dialog-actions >
   <button mat-flat-button color="primary" (click)="onClickNo()">NO </button>
-  <button mat-flat-button style="margin-left: 20px" color="warn" [mat-dialog-close]="true" >YES </button>
+  <button mat-flat-button style="margin-left: 20px" color="warn" [mat-dialog-close]="true">YES </button>
   </div>
-

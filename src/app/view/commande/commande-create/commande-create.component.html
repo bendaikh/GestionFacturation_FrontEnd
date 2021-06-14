@@ -27,11 +27,11 @@
           </td>
         </tr>
         <tr>
-          <td><b>status de commande:</b></td>
+          <td><b>Expedition:</b></td>
           <td>
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="command.commandestatut">
-              <mat-radio-button class="example-radio-button" [value]="commandstatus" *ngFor="let commandstatus of commandeStatus">
-                {{commandstatus.nom}}
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="command.expedition">
+              <mat-radio-button class="example-radio-button" [value]="expedition" *ngFor="let expedition of expeditions">
+                {{expedition.nom}}
               </mat-radio-button>
             </mat-radio-group>
           </td>
@@ -55,11 +55,11 @@
             <mat-option *ngFor="let devise of devises" [value]="devise">{{devise.nom}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <h4>Expedition:</h4>
+        <h4>Commande Status:</h4>
         <mat-form-field appearance="fill" class="left" style="width: 300px">
-          <mat-label>listes des expeditions</mat-label>
-          <mat-select [(ngModel)]="command.expedition" name="expedition">
-            <mat-option *ngFor="let expedition of expeditions" [value]="expedition">{{expedition.nom}}</mat-option>
+          <mat-label>listes des commandes status</mat-label>
+          <mat-select [(ngModel)]="command.commandestatut" name="commadneStatus">
+            <mat-option *ngFor="let commandeStat of commandeStatus" [value]="commandeStat">{{commandeStat.nom}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -130,7 +130,7 @@
         </tr>
       </table>
       <table class="example-full-width" cellspacing="50" id="tableForm">
-        <tr>
+        <tr class="backColor">
           <th>id</th>
           <th>reference</th>
           <th>delivery date</th>

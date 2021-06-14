@@ -34,6 +34,7 @@ export class FindClientComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['select', 'reference', 'nom', 'legal_form', 'adresse1' , 'adresse2' , 'zip_code' , 'ville' , 'pays' , 'number1' , 'number2' , 'email'];
   selection = new SelectionModel<UserData>(true, []);
+  disabled: boolean = false;
   constructor(private clientService: ClientService) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

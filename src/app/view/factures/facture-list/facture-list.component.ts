@@ -36,18 +36,14 @@ export class FactureListComponent implements OnInit , AfterViewInit {
   get factures(): Array<Facture> {
     return this.factureService.factures;
   }
-  // tslint:disable-next-line:max-line-length
   ELEMENT_DATA: Facture[];
-  // tslint:disable-next-line:max-line-length
   displayedColumns: string[] = ['reference', 'dateCreation' , 'dateEchaence', 'client'  , 'total' , 'factureEtat' , 'factureStatut', 'commande' , 'action'];
-  // tslint:disable-next-line:variable-name
    private _dataSource = new MatTableDataSource<Facture>(this.ELEMENT_DATA);
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
 
-  // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
     this._dataSource.paginator = this.paginator;
     this._dataSource.sort = this.sort;
@@ -313,8 +309,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
     };
   }
   openDialog(index: number , facture: Facture) {
-    console.log('Hadi 9bel Matdkhel ' + facture);
-    // @ts-ignore
+
     const dialogRef = this.dailog.open(DeleteDailogComponent, {
       width: '350px',
       data: 'Are you sure that you want delete this record?'
@@ -323,7 +318,7 @@ export class FactureListComponent implements OnInit , AfterViewInit {
       res => {
         console.log(res.reference);
         if (res) {
-          this.factureService.deleteByReference(index, facture);
+          this.factureService.deleteByReference(index, facture.reference);
           console.log(res.reference);
         }
       }

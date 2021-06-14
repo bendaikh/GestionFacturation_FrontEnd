@@ -73,7 +73,7 @@ import { HomeComponent } from './view/home/home.component';
     HomeComponent
   ],
   // tslint:disable-next-line:max-line-length
-  entryComponents: [QuitterDevisComponent,SuccessComponent,PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent, ClientCreatComponent, FindClientComponent],
+  entryComponents: [CommandeSaveSuccessComponent,QuitterDevisComponent,SuccessComponent,PaimentDailogComponent, DeleteDailogComponent, DeviseCreateComponent, FindDeviseComponent, DeviseSuccessComponent, PaimentUpdateDailogComponent, PaimentDeleteDailogComponent, PaimentDetailDailogComponent, ClientCreatComponent, FindClientComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

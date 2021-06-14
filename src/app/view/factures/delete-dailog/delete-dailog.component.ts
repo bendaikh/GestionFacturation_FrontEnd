@@ -11,7 +11,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class DeleteDailogComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
-  constructor(private factureService: FactureService,  public dialogRef: MatDialogRef<FactureService>,  @Inject(MAT_DIALOG_DATA) public message: string ) { }
+  constructor(private factureService: FactureService,  public dialogRef: MatDialogRef<FactureService>,  @Inject(MAT_DIALOG_DATA) public message: string ,
+              @Inject(MAT_DIALOG_DATA) public index: number , @Inject(MAT_DIALOG_DATA) public facture: Facture) { }
   ngOnInit() {
   }
   onClickNo(): void {
